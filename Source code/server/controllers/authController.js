@@ -44,7 +44,7 @@ export const register = async (req, res) => {
 
     const otp = generateOTP();
     const otpExpires = Date.now() + 10 * 60 * 1000;
-    sendOTPEmail(email, otp);
+    await sendOTPEmail(email, otp);
 
     const hashPassword = await hashString(password); // Hash the validated password
     const user = new Users({

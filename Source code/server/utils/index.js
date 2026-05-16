@@ -30,22 +30,30 @@ export const generateOTP = () => {
 };
 // Send OTP via email (using nodemailer)
 export const sendOTPEmail = async (email, otp) => {
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
-  
-    const mailOptions = {
-      from: process.env.EMAIL,
-      to: email,
-      subject: 'Your OTP Code',
-      text: `Your OTP code is ${otp}. It is valid for 10 minutes.`,
-    };
-  
-    await transporter.sendMail(mailOptions);
+    try {
+      console.log('Attempting to send OTP email to:', email);
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      });
+    
+      const mailOptions = {
+        from: process.env.EMAIL,
+        to: email,
+        subject: 'Your OTP Code',
+        text: `Your OTP code is ${otp}. It is valid for 10 minutes.`,
+      };
+    
+      const info = await transporter.sendMail(mailOptions);
+      console.log('OTP Email sent successfully:', info.messageId);
+      return info;
+    } catch (error) {
+      console.error('Error in sendOTPEmail:', error);
+      throw error;
+    }
   };
 
 // Send invitation email to join a family
