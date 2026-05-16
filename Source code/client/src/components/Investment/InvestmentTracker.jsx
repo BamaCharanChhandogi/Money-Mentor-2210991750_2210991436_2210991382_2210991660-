@@ -118,7 +118,7 @@ const InvestmentTracker = () => {
     }))
     : [];
 
-  const COLORS = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444'];
+  const COLORS = ['#C9A24A', '#57564F', '#6B8E5A', '#B8745C', '#8F6E2E'];
 
   return (
     <div className="min-h-screen bg-mesh py-8">

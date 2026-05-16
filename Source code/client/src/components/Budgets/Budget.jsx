@@ -303,7 +303,7 @@ const BudgetDashboard = () => {
   };
 
   const totalBudget = budgets.reduce((sum, b) => sum + b.amount, 0);
-  const COLORS = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444'];
+  const COLORS = ['#C9A24A', '#57564F', '#6B8E5A', '#B8745C', '#8F6E2E'];
 
   return (
     <div className="min-h-screen bg-mesh py-8">
@@ -365,16 +365,16 @@ const BudgetDashboard = () => {
             >
               <defs>
                 <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#60a5fa" stopOpacity={1} />
-                  <stop offset="100%" stopColor="#2563EB" stopOpacity={1} />
+                  <stop offset="0%" stopColor="#E8D47D" stopOpacity={1} />
+                  <stop offset="100%" stopColor="#C9A24A" stopOpacity={1} />
                 </linearGradient>
                 <linearGradient id="warningGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#fbbf24" stopOpacity={1} />
-                  <stop offset="100%" stopColor="#d97706" stopOpacity={1} />
+                  <stop offset="0%" stopColor="#d9be56" stopOpacity={1} />
+                  <stop offset="100%" stopColor="#b08a3a" stopOpacity={1} />
                 </linearGradient>
                 <linearGradient id="dangerGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#f87171" stopOpacity={1} />
-                  <stop offset="100%" stopColor="#dc2626" stopOpacity={1} />
+                  <stop offset="0%" stopColor="#d18f65" stopOpacity={1} />
+                  <stop offset="100%" stopColor="#B8745C" stopOpacity={1} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
