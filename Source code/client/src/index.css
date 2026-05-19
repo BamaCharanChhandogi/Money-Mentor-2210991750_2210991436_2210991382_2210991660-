@@ -1,82 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ============================================
-   🎨 PREMIUM DESIGN SYSTEM - MONEY MENTOR
+   🏛️ MONUMENTAL DESIGN SYSTEM - MONEY MENTOR
+   Warm · Editorial · Luxe
    ============================================ */
 
 :root {
-  /* 🎨 Primary Brand Colors - Sophisticated Financial Theme */
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
-  
-  /* 💎 Accent Colors - Premium Purple/Violet */
-  --color-accent-50: #faf5ff;
-  --color-accent-100: #f3e8ff;
-  --color-accent-200: #e9d5ff;
-  --color-accent-300: #d8b4fe;
-  --color-accent-400: #c084fc;
-  --color-accent-500: #a855f7;
-  --color-accent-600: #9333ea;
-  --color-accent-700: #7e22ce;
-  --color-accent-800: #6b21a8;
-  --color-accent-900: #581c87;
-  
-  /* 💰 Success Colors - Wealth & Growth */
-  --color-success-50: #ecfdf5;
-  --color-success-100: #d1fae5;
-  --color-success-200: #a7f3d0;
-  --color-success-300: #6ee7b7;
-  --color-success-400: #34d399;
-  --color-success-500: #10b981;
-  --color-success-600: #059669;
-  --color-success-700: #047857;
-  --color-success-800: #065f46;
-  --color-success-900: #064e3b;
-  
-  /* 🔥 Warning/Expense Colors */
-  --color-warning-50: #fff7ed;
-  --color-warning-100: #ffedd5;
-  --color-warning-200: #fed7aa;
-  --color-warning-300: #fdba74;
-  --color-warning-400: #fb923c;
-  --color-warning-500: #f97316;
-  --color-warning-600: #ea580c;
-  --color-warning-700: #c2410c;
-  --color-warning-800: #9a3412;
-  --color-warning-900: #7c2d12;
-  
-  /* 🌑 Dark Mode Colors */
-  --color-dark-50: #f8fafc;
-  --color-dark-100: #f1f5f9;
-  --color-dark-200: #e2e8f0;
-  --color-dark-300: #cbd5e1;
-  --color-dark-400: #94a3b8;
-  --color-dark-500: #64748b;
-  --color-dark-600: #475569;
-  --color-dark-700: #334155;
-  --color-dark-800: #1e293b;
-  --color-dark-900: #0f172a;
-  
-  /* 🎭 Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-bg-light: rgba(255, 255, 255, 0.7);
-  --glass-bg-dark: rgba(15, 23, 42, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-  
-  /* 📐 Spacing & Sizing */
+  /* 🏛️ Warm Brand Palette */
+  --color-cream: #F4F0D8;
+  --color-cream-light: #FAF8ED;
+  --color-cream-dark: #E8E4CC;
+  --color-charcoal: #2A2925;
+  --color-charcoal-light: #57564F;
+  --color-gold: #C9A24A;
+  --color-gold-light: #E8D47D;
+  --color-gold-dark: #8F6E2E;
+  --color-olive: #6B8E5A;
+  --color-terra: #B8745C;
+
+  /* 🎭 Card Styles (no glass — solid warm) */
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --card-bg-dark: #2A2925;
+  --card-border: rgba(42, 41, 37, 0.1);
+  --card-shadow: 0 4px 24px 0 rgba(42, 41, 37, 0.08);
+
+  /* 📐 Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -84,246 +36,291 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
   --spacing-3xl: 4rem;
-  
+
   /* 🔤 Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
   /* 🎬 Animations */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  
+
   /* 🌈 Gradients */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  --gradient-premium: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  --gradient-ocean: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
-  --gradient-sunset: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
-  --gradient-forest: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
-  
+  --gradient-primary: linear-gradient(135deg, #C9A24A 0%, #8F6E2E 100%);
+  --gradient-success: linear-gradient(135deg, #6B8E5A 0%, #455d3a 100%);
+  --gradient-warning: linear-gradient(135deg, #B8745C 0%, #7d4b3a 100%);
+  --gradient-premium: linear-gradient(135deg, #C9A24A 0%, #8F6E2E 50%, #57564F 100%);
+  --gradient-ocean: linear-gradient(135deg, #C9A24A 0%, #b08a3a 50%, #8F6E2E 100%);
+  --gradient-sunset: linear-gradient(135deg, #B8745C 0%, #9c5f49 50%, #7d4b3a 100%);
+  --gradient-forest: linear-gradient(135deg, #6B8E5A 0%, #577548 50%, #455d3a 100%);
+
   /* 🎯 Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.4);
-  --shadow-glow-success: 0 0 20px rgba(16, 185, 129, 0.4);
-  --shadow-glow-warning: 0 0 20px rgba(251, 146, 60, 0.4);
+  --shadow-sm: 0 1px 2px 0 rgba(42, 41, 37, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(42, 41, 37, 0.07), 0 2px 4px -1px rgba(42, 41, 37, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(42, 41, 37, 0.07), 0 4px 6px -2px rgba(42, 41, 37, 0.03);
+  --shadow-xl: 0 20px 25px -5px rgba(42, 41, 37, 0.07), 0 10px 10px -5px rgba(42, 41, 37, 0.03);
+  --shadow-2xl: 0 25px 50px -12px rgba(42, 41, 37, 0.15);
+  --shadow-glow: 0 0 20px rgba(201, 162, 74, 0.25);
+  --shadow-glow-success: 0 0 20px rgba(107, 142, 90, 0.25);
+  --shadow-glow-warning: 0 0 20px rgba(184, 116, 92, 0.25);
 }
 
 /* ============================================
-   🎨 BASE STYLES
+   🏛️ BASE STYLES
    ============================================ */
 
 @layer base {
   html {
     @apply scroll-smooth;
   }
-  
+
   body {
-    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50;
-    @apply text-slate-900;
+    background-color: #F4F0D8 !important;
+    background-image: none !important;
+    @apply text-accent-900;
     @apply font-primary;
     @apply antialiased;
     min-height: 100vh;
-    background-attachment: fixed;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-bold;
+    color: #2A2925;
   }
-  
+
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
   }
-  
+
   h2 {
     @apply text-3xl md:text-4xl lg:text-5xl;
   }
-  
+
   h3 {
     @apply text-2xl md:text-3xl lg:text-4xl;
   }
-  
+
   h4 {
     @apply text-xl md:text-2xl lg:text-3xl;
   }
-  
+
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
-  
+
   ::-webkit-scrollbar-track {
-    @apply bg-slate-100;
+    background: #E8E4CC;
   }
-  
+
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-primary-400 to-primary-600 rounded-full;
+    background: linear-gradient(to bottom, #C9A24A, #8F6E2E);
+    border-radius: 9999px;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
-    @apply from-primary-500 to-primary-700;
+    background: linear-gradient(to bottom, #b08a3a, #6e5524);
   }
 }
 
 /* ============================================
-   🎨 COMPONENT UTILITIES
+   🏛️ COMPONENT UTILITIES
    ============================================ */
 
 @layer components {
-  /* 💎 Glass Card */
+  /* 💎 Card — Solid Warm (replaces glass-card) */
   .glass-card {
-    background: var(--glass-bg-light);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
     @apply rounded-2xl;
   }
-  
+
   .glass-card-dark {
-    background: var(--glass-bg-dark);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--glass-shadow);
+    background: var(--card-bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--card-shadow);
     @apply rounded-2xl;
   }
-  
-  /* 🎯 Premium Button */
+
+  /* 🏛️ Primary Button — Dark Charcoal */
   .btn-primary {
-    @apply px-6 py-3 rounded-xl font-semibold text-white;
-    @apply bg-gradient-to-r from-primary-500 to-primary-700;
-    @apply shadow-lg hover:shadow-xl;
-    @apply transform transition-all duration-300;
-    @apply hover:scale-105 hover:from-primary-600 hover:to-primary-800;
-    @apply active:scale-95;
-    @apply focus:outline-none focus:ring-4 focus:ring-primary-300;
-  }
-  
-  .btn-accent {
-    @apply px-6 py-3 rounded-xl font-semibold text-white;
-    @apply bg-gradient-to-r from-accent-500 to-accent-700;
-    @apply shadow-lg hover:shadow-xl;
-    @apply transform transition-all duration-300;
-    @apply hover:scale-105 hover:from-accent-600 hover:to-accent-800;
-    @apply active:scale-95;
-    @apply focus:outline-none focus:ring-4 focus:ring-accent-300;
-  }
-  
-  .btn-success {
-    @apply px-6 py-3 rounded-xl font-semibold text-white;
-    @apply bg-gradient-to-r from-success-500 to-success-700;
-    @apply shadow-lg hover:shadow-xl;
-    @apply transform transition-all duration-300;
-    @apply hover:scale-105 hover:from-success-600 hover:to-success-800;
-    @apply active:scale-95;
-    @apply focus:outline-none focus:ring-4 focus:ring-success-300;
-  }
-  
-  .btn-outline {
     @apply px-6 py-3 rounded-xl font-semibold;
-    @apply bg-transparent border-2 border-primary-500 text-primary-700;
-    @apply hover:bg-primary-500 hover:text-white;
+    background: #2A2925;
+    color: #F4F0D8;
+    @apply shadow-lg;
     @apply transform transition-all duration-300;
     @apply hover:scale-105 active:scale-95;
-    @apply focus:outline-none focus:ring-4 focus:ring-primary-300;
+    @apply focus:outline-none;
+    box-shadow: 0 4px 14px rgba(42, 41, 37, 0.25);
   }
-  
-  /* 📝 Premium Input */
+  .btn-primary:hover {
+    background: #3d3c37;
+    box-shadow: 0 6px 20px rgba(42, 41, 37, 0.3);
+  }
+  .btn-primary:focus {
+    box-shadow: 0 0 0 4px rgba(201, 162, 74, 0.3);
+  }
+
+  /* 🏛️ Accent Button — Gold */
+  .btn-accent {
+    @apply px-6 py-3 rounded-xl font-semibold;
+    background: linear-gradient(135deg, #C9A24A 0%, #b08a3a 100%);
+    color: #2A2925;
+    @apply shadow-lg;
+    @apply transform transition-all duration-300;
+    @apply hover:scale-105 active:scale-95;
+    @apply focus:outline-none;
+  }
+  .btn-accent:hover {
+    background: linear-gradient(135deg, #d9be56 0%, #C9A24A 100%);
+    box-shadow: 0 6px 20px rgba(201, 162, 74, 0.35);
+  }
+  .btn-accent:focus {
+    box-shadow: 0 0 0 4px rgba(201, 162, 74, 0.3);
+  }
+
+  /* 🏛️ Success Button — Olive */
+  .btn-success {
+    @apply px-6 py-3 rounded-xl font-semibold;
+    background: linear-gradient(135deg, #6B8E5A 0%, #577548 100%);
+    color: #fff;
+    @apply shadow-lg;
+    @apply transform transition-all duration-300;
+    @apply hover:scale-105 active:scale-95;
+    @apply focus:outline-none;
+  }
+  .btn-success:hover {
+    background: linear-gradient(135deg, #82a86a 0%, #6B8E5A 100%);
+    box-shadow: 0 6px 20px rgba(107, 142, 90, 0.35);
+  }
+  .btn-success:focus {
+    box-shadow: 0 0 0 4px rgba(107, 142, 90, 0.3);
+  }
+
+  /* 🏛️ Outline Button */
+  .btn-outline {
+    @apply px-6 py-3 rounded-xl font-semibold;
+    @apply bg-transparent;
+    border: 2px solid #2A2925;
+    color: #2A2925;
+    @apply transform transition-all duration-300;
+    @apply hover:scale-105 active:scale-95;
+    @apply focus:outline-none;
+  }
+  .btn-outline:hover {
+    background: #2A2925;
+    color: #F4F0D8;
+  }
+  .btn-outline:focus {
+    box-shadow: 0 0 0 4px rgba(201, 162, 74, 0.3);
+  }
+
+  /* 📝 Input — Warm Cream */
   .input-primary {
     @apply w-full px-4 py-3 rounded-xl;
-    @apply bg-white/80 backdrop-blur-sm;
-    @apply border-2 border-slate-200;
-    @apply focus:border-primary-500 focus:ring-4 focus:ring-primary-100;
+    background: #FAF8ED;
+    border: 2px solid #E8E4CC;
+    color: #2A2925;
+    @apply font-medium;
     @apply transition-all duration-300;
-    @apply placeholder:text-slate-400;
-    @apply text-slate-900 font-medium;
   }
-  
+  .input-primary::placeholder {
+    color: #94918a;
+  }
+  .input-primary:focus {
+    border-color: #C9A24A;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(201, 162, 74, 0.15);
+    background: #fff;
+  }
+
   /* 💳 Stat Card */
   .stat-card {
-    @apply glass-card p-6;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    @apply rounded-2xl p-6;
     @apply transform transition-all duration-300;
-    @apply hover:scale-105 hover:shadow-2xl;
+    @apply hover:scale-105 hover:shadow-xl;
     @apply cursor-pointer;
   }
-  
+
   .stat-card-gradient {
     @apply p-6 rounded-2xl;
-    @apply shadow-xl hover:shadow-2xl;
+    @apply shadow-xl;
     @apply transform transition-all duration-300;
     @apply hover:scale-105 hover:-translate-y-1;
     @apply cursor-pointer;
     @apply relative overflow-hidden;
   }
-  
+  .stat-card-gradient:hover {
+    box-shadow: 0 20px 40px -10px rgba(42, 41, 37, 0.2);
+  }
+
   .stat-card-gradient::before {
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
   }
-  
+
   .stat-card-gradient:hover::before {
     @apply opacity-100;
   }
-  
+
   /* 🎨 Gradient Text */
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-premium);
   }
-  
+
   .gradient-text-ocean {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-ocean);
   }
-  
+
   .gradient-text-success {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-forest);
   }
-  
+
   /* 🌟 Floating Animation */
   .floating {
-    animation: floating 3s ease-in-out infinite;
+    animation: floating 4s ease-in-out infinite;
   }
-  
+
   @keyframes floating {
     0%, 100% {
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
   }
-  
+
   /* ✨ Pulse Glow */
   .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+    animation: pulse-glow 2.5s ease-in-out infinite;
   }
-  
+
   @keyframes pulse-glow {
     0%, 100% {
-      box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 0 15px rgba(201, 162, 74, 0.3);
     }
     50% {
-      box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
+      box-shadow: 0 0 30px rgba(201, 162, 74, 0.5);
     }
   }
-  
+
   /* 🎯 Shimmer Effect */
   .shimmer {
     position: relative;
     overflow: hidden;
   }
-  
+
   .shimmer::before {
     content: '';
     position: absolute;
@@ -331,10 +328,10 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: shimmer 2s infinite;
+    background: linear-gradient(90deg, transparent, rgba(201, 162, 74, 0.15), transparent);
+    animation: shimmer 3s infinite;
   }
-  
+
   @keyframes shimmer {
     0% {
       left: -100%;
@@ -343,32 +340,32 @@
       left: 100%;
     }
   }
-  
+
   /* 🎪 Fade In Up Animation */
   .fade-in-up {
     animation: fadeInUp 0.6s ease-out;
   }
-  
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(24px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+
   /* 🎭 Scale In Animation */
   .scale-in {
     animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-  
+
   @keyframes scaleIn {
     from {
       opacity: 0;
-      transform: scale(0.8);
+      transform: scale(0.85);
     }
     to {
       opacity: 1;
@@ -378,29 +375,291 @@
 }
 
 /* ============================================
-   🎨 UTILITY CLASSES
+   🏛️ UTILITY CLASSES
    ============================================ */
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .bg-pattern {
-    background-image: 
-      radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 40% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(201, 162, 74, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(107, 142, 90, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(184, 116, 92, 0.04) 0%, transparent 50%);
   }
-  
+
   .bg-mesh {
-    background-color: #f8fafc;
-    background-image: 
-      radial-gradient(at 40% 20%, hsla(217, 91%, 60%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsla(271, 76%, 53%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, hsla(189, 78%, 46%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 80% 50%, hsla(340, 82%, 52%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, hsla(22, 93%, 53%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 80% 100%, hsla(142, 76%, 36%, 0.1) 0px, transparent 50%);
+    background-color: #F4F0D8;
+    background-image:
+      radial-gradient(at 40% 20%, rgba(201, 162, 74, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(107, 142, 90, 0.06) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(184, 116, 92, 0.05) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(87, 86, 79, 0.04) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(201, 162, 74, 0.06) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, rgba(107, 142, 90, 0.05) 0px, transparent 50%);
   }
 }
+
+/* ============================================
+   🏛️ GLOBAL OVERRIDES — WARM PALETTE
+   These override Tailwind's default slate/blue
+   classes used extensively in JSX components
+   so everything shifts warm without touching JSX.
+   ============================================ */
+
+/* Body-level background overrides */
+.bg-slate-50, .bg-slate-100 {
+  background-color: #F4F0D8 !important;
+}
+
+/* Navbar & Footer dark backgrounds stay dark but warm */
+.bg-slate-900, .from-slate-900 {
+  background-color: #2A2925 !important;
+}
+.bg-slate-800, .via-slate-800 {
+  background-color: #3d3c37 !important;
+}
+
+/* Override gradient backgrounds used in hero sections */
+.from-primary-600 { --tw-gradient-from: #b08a3a !important; }
+.via-primary-700 { --tw-gradient-stops: var(--tw-gradient-from), #8F6E2E, var(--tw-gradient-to) !important; }
+.to-purple-700 { --tw-gradient-to: #57564F !important; }
+.to-purple-600 { --tw-gradient-to: #57564F !important; }
+.from-primary-500 { --tw-gradient-from: #C9A24A !important; }
+.to-primary-700 { --tw-gradient-to: #8F6E2E !important; }
+.to-primary-600 { --tw-gradient-to: #b08a3a !important; }
+
+/* Stat card gradient overrides */
+.from-rose-500 { --tw-gradient-from: #B8745C !important; }
+.to-red-700 { --tw-gradient-to: #7d4b3a !important; }
+.from-emerald-500 { --tw-gradient-from: #6B8E5A !important; }
+.to-emerald-700 { --tw-gradient-to: #455d3a !important; }
+.from-emerald-400 { --tw-gradient-from: #82a86a !important; }
+.to-emerald-600 { --tw-gradient-to: #577548 !important; }
+.from-violet-500 { --tw-gradient-from: #57564F !important; }
+.to-purple-700 { --tw-gradient-to: #2A2925 !important; }
+
+/* Service card gradient overrides */
+.from-blue-500 { --tw-gradient-from: #C9A24A !important; }
+.to-blue-700 { --tw-gradient-to: #8F6E2E !important; }
+.from-blue-400 { --tw-gradient-from: #d9be56 !important; }
+.to-blue-600 { --tw-gradient-to: #b08a3a !important; }
+.from-purple-500 { --tw-gradient-from: #57564F !important; }
+.to-purple-700 { --tw-gradient-to: #3d3c37 !important; }
+.from-amber-500 { --tw-gradient-from: #B8745C !important; }
+.to-amber-700 { --tw-gradient-to: #7d4b3a !important; }
+.from-indigo-500 { --tw-gradient-from: #6B8E5A !important; }
+.to-indigo-700 { --tw-gradient-to: #455d3a !important; }
+.from-rose-500 { --tw-gradient-from: #B8745C !important; }
+.to-rose-700 { --tw-gradient-to: #7d4b3a !important; }
+.from-orange-400 { --tw-gradient-from: #B8745C !important; }
+.to-orange-600 { --tw-gradient-to: #9c5f49 !important; }
+
+/* Text color overrides for warm palette */
+.text-primary-200 { color: #f3e8b0 !important; }
+.text-primary-300 { color: #e8d47d !important; }
+.text-primary-400 { color: #d9be56 !important; }
+.text-primary-500 { color: #C9A24A !important; }
+.text-primary-600 { color: #b08a3a !important; }
+.text-primary-700 { color: #8F6E2E !important; }
+
+/* Background colors for interactive elements */
+.bg-primary-50 { background-color: #fdfbf0 !important; }
+.bg-primary-100 { background-color: #faf5db !important; }
+.bg-primary-500 { background-color: #C9A24A !important; }
+.hover\:bg-primary-50:hover { background-color: #fdfbf0 !important; }
+
+/* Border overrides */
+.border-primary-100 { border-color: #faf5db !important; }
+.border-primary-500 { border-color: #C9A24A !important; }
+.focus\:border-primary-500:focus { border-color: #C9A24A !important; }
+.focus\:ring-primary-500:focus { --tw-ring-color: rgba(201, 162, 74, 0.3) !important; }
+.focus\:ring-primary-300:focus { --tw-ring-color: rgba(201, 162, 74, 0.3) !important; }
+.focus\:ring-primary-100:focus { --tw-ring-color: rgba(201, 162, 74, 0.15) !important; }
+
+/* Success colors — olive */
+.text-emerald-600 { color: #6B8E5A !important; }
+.text-success-700 { color: #455d3a !important; }
+.text-success-900 { color: #2a3623 !important; }
+.bg-emerald-50 { background-color: #f3f7f0 !important; }
+.bg-success-100 { background-color: #e3eddb !important; }
+.border-emerald-100 { border-color: #e3eddb !important; }
+.bg-green-100 { background-color: #e3eddb !important; }
+.text-green-600 { color: #6B8E5A !important; }
+
+/* Warning / expense — terra cotta */
+.text-red-500 { color: #B8745C !important; }
+.text-red-600 { color: #9c5f49 !important; }
+.text-red-700 { color: #7d4b3a !important; }
+.bg-red-50 { background-color: #fdf5f0 !important; }
+.bg-red-100 { background-color: #fae8db !important; }
+.border-red-100 { border-color: #fae8db !important; }
+.border-red-200 { border-color: #f2cdb2 !important; }
+.border-red-500 { border-color: #B8745C !important; }
+
+/* Blue overrides → gold */
+.text-blue-600 { color: #C9A24A !important; }
+.bg-blue-100 { background-color: #faf5db !important; }
+
+/* Slate text — warm charcoal */
+.text-slate-900 { color: #2A2925 !important; }
+.text-slate-800 { color: #302f2b !important; }
+.text-slate-700 { color: #3d3c37 !important; }
+.text-slate-600 { color: #57564F !important; }
+.text-slate-500 { color: #6b6860 !important; }
+.text-slate-400 { color: #94918a !important; }
+.text-slate-300 { color: #b8b5ab !important; }
+
+/* Slate background overrides */
+.bg-slate-100 { background-color: #E8E4CC !important; }
+.bg-slate-50 { background-color: #F4F0D8 !important; }
+.bg-slate-200 { background-color: #d5d0b8 !important; }
+.hover\:bg-slate-100:hover { background-color: #E8E4CC !important; }
+.hover\:bg-slate-50:hover { background-color: #F4F0D8 !important; }
+.hover\:bg-slate-200:hover { background-color: #d5d0b8 !important; }
+
+/* Slate border overrides */
+.border-slate-100 { border-color: rgba(42, 41, 37, 0.08) !important; }
+.border-slate-200 { border-color: rgba(42, 41, 37, 0.12) !important; }
+.divide-slate-100 > :not([hidden]) ~ :not([hidden]) { border-color: rgba(42, 41, 37, 0.08) !important; }
+
+/* Navbar / card white overrides → warm cream */
+.bg-white { background-color: #FEFCF3 !important; }
+.bg-white\/80 { background-color: rgba(254, 252, 243, 0.85) !important; }
+.bg-white\/60 { background-color: rgba(254, 252, 243, 0.6) !important; }
+.hover\:bg-white\/60:hover { background-color: rgba(254, 252, 243, 0.6) !important; }
+.hover\:bg-white:hover { background-color: #FEFCF3 !important; }
+
+/* Shadow overrides for warm tone */
+.shadow-primary-500\/20 { --tw-shadow-color: rgba(201, 162, 74, 0.2) !important; }
+.shadow-primary-500\/25 { --tw-shadow-color: rgba(201, 162, 74, 0.25) !important; }
+.shadow-primary-500\/40 { --tw-shadow-color: rgba(201, 162, 74, 0.4) !important; }
+.shadow-orange-400\/40 { --tw-shadow-color: rgba(184, 116, 92, 0.4) !important; }
+.shadow-blue-400\/40 { --tw-shadow-color: rgba(201, 162, 74, 0.4) !important; }
+.shadow-emerald-400\/40 { --tw-shadow-color: rgba(107, 142, 90, 0.4) !important; }
+
+/* Spinner / loading overrides */
+.border-primary-500 { border-color: #C9A24A !important; }
+
+/* Register page left panel overrides */
+.bg-primary-600\/20 { background-color: rgba(176, 138, 58, 0.2) !important; }
+.bg-accent-600\/20 { background-color: rgba(87, 86, 79, 0.2) !important; }
+.bg-primary-500\/20 { background-color: rgba(201, 162, 74, 0.2) !important; }
+.text-primary-400 { color: #d9be56 !important; }
+.from-primary-500 { --tw-gradient-from: #C9A24A !important; }
+.to-accent-500 { --tw-gradient-to: #57564F !important; }
+.to-accent-600 { --tw-gradient-to: #4a4943 !important; }
+
+/* Focus ring overrides for form fields */
+.focus\:ring-primary-500\/10:focus { --tw-ring-color: rgba(201, 162, 74, 0.1) !important; }
+.focus\:border-primary-500:focus { border-color: #C9A24A !important; }
+
+/* Yellow/gold accent for AI advice */
+.text-yellow-500 { color: #C9A24A !important; }
+
+/* Body gradient background overrides — eliminate all cool tints */
+.from-slate-50 { --tw-gradient-from: #F4F0D8 !important; }
+.via-blue-50 { --tw-gradient-stops: var(--tw-gradient-from), #F4F0D8, var(--tw-gradient-to) !important; }
+.to-purple-50 { --tw-gradient-to: #F4F0D8 !important; }
+.bg-blue-50 { background-color: #F4F0D8 !important; }
+.bg-purple-50 { background-color: #F4F0D8 !important; }
+
+/* Additional service card and hero overrides */
+.border-slate-200\/60 { border-color: rgba(42, 41, 37, 0.08) !important; }
+.border-slate-200\/50 { border-color: rgba(42, 41, 37, 0.06) !important; }
+.border-slate-800\/50 { border-color: rgba(42, 41, 37, 0.5) !important; }
+.border-slate-700\/50 { border-color: rgba(61, 60, 55, 0.5) !important; }
+.border-white\/10 { border-color: rgba(255, 255, 255, 0.1) !important; }
+.border-white\/20 { border-color: rgba(255, 255, 255, 0.2) !important; }
+.border-white\/30 { border-color: rgba(255, 255, 255, 0.3) !important; }
+
+/* White/transparent overrides for hero and dark sections */
+.bg-white\/5 { background-color: rgba(255, 255, 255, 0.05) !important; }
+.bg-white\/10 { background-color: rgba(255, 255, 255, 0.1) !important; }
+.bg-white\/15 { background-color: rgba(255, 255, 255, 0.15) !important; }
+.bg-white\/20 { background-color: rgba(255, 255, 255, 0.2) !important; }
+.bg-white\/25 { background-color: rgba(255, 255, 255, 0.25) !important; }
+.hover\:bg-white\/20:hover { background-color: rgba(255, 255, 255, 0.2) !important; }
+.hover\:bg-white\/25:hover { background-color: rgba(255, 255, 255, 0.25) !important; }
+
+/* Additional primary gradient stops for dynamic hero backgrounds */
+.from-primary-600 { --tw-gradient-from: #b08a3a !important; }
+.to-primary-800 { --tw-gradient-to: #6e5524 !important; }
+.hover\:from-primary-600:hover { --tw-gradient-from: #b08a3a !important; }
+.hover\:to-primary-800:hover { --tw-gradient-to: #6e5524 !important; }
+
+/* Register page right panel */
+.bg-white.relative { background-color: #FEFCF3 !important; }
+
+/* Hover states for nav and interactive elements */
+.hover\:text-primary-600:hover { color: #b08a3a !important; }
+.hover\:text-primary-700:hover { color: #8F6E2E !important; }
+.hover\:bg-primary-500:hover { background-color: #C9A24A !important; }
+.group-hover\:text-primary-500 { color: #C9A24A !important; }
+.group-hover\:text-primary-600 { color: #b08a3a !important; }
+
+/* Service hero section dark bg blurs */
+.bg-primary-600\/20 { background-color: rgba(176, 138, 58, 0.2) !important; }
+.bg-accent-600\/20 { background-color: rgba(87, 86, 79, 0.2) !important; }
+
+/* Chart and tooltip accent overrides */
+.from-success-500 { --tw-gradient-from: #6B8E5A !important; }
+.to-success-700 { --tw-gradient-to: #455d3a !important; }
+.from-warning-500 { --tw-gradient-from: #B8745C !important; }
+.to-warning-700 { --tw-gradient-to: #7d4b3a !important; }
+.from-accent-500 { --tw-gradient-from: #57564F !important; }
+.to-accent-700 { --tw-gradient-to: #3d3c37 !important; }
+
+/* ============================================
+   🏛️ FINAL OVERRIDES — Inline color remnants
+   ============================================ */
+
+/* Financial Health Score: blue-500 → gold */
+.text-blue-500 { color: #C9A24A !important; }
+.bg-blue-500 { background-color: #C9A24A !important; }
+
+/* Emerald → olive for score and badges */
+.text-emerald-500 { color: #6B8E5A !important; }
+.bg-emerald-500 { background-color: #6B8E5A !important; }
+
+/* Amber overrides → warm gold */
+.text-amber-500 { color: #C9A24A !important; }
+.bg-amber-500 { background-color: #C9A24A !important; }
+
+/* Purple remnants → charcoal */
+.text-purple-500 { color: #57564F !important; }
+.bg-purple-500 { background-color: #57564F !important; }
+
+/* SVG stroke overrides for chart lines */
+svg line[stroke="#e2e8f0"] { stroke: #d5d0b8 !important; }
+svg .recharts-cartesian-grid line { stroke: #E8E4CC !important; }
+
+/* Chatbot floating button — warm styling */
+.fixed.bottom-4.right-4,
+.fixed.bottom-6.right-6,
+[class*="fixed"][class*="bottom"][class*="right"] > button {
+  background: #2A2925 !important;
+}
+
+/* Additional text/bg color overrides for edge cases */
+.text-primary-900 { color: #4d3b19 !important; }
+.bg-primary-900 { background-color: #4d3b19 !important; }
+.border-primary-200 { border-color: #f3e8b0 !important; }
+
+/* Hover overrides for service cards */
+.group-hover\:border-primary-100 { border-color: #faf5db !important; }
+.group-hover\:bg-primary-50\/50 { background-color: rgba(253, 251, 240, 0.5) !important; }
+
+/* Ring focus states */
+.focus\:ring-primary-500:focus { --tw-ring-color: rgba(201, 162, 74, 0.4) !important; }
+
+/* Border-t and section dividers */
+.border-slate-100\/60 { border-color: rgba(42, 41, 37, 0.06) !important; }
+.border-white\/50 { border-color: rgba(255, 255, 255, 0.5) !important; }
+
+/* Success badge text */
+.text-success-600 { color: #577548 !important; }
+.bg-success-50 { background-color: #f3f7f0 !important; }
+.border-success-100 { border-color: #e3eddb !important; }

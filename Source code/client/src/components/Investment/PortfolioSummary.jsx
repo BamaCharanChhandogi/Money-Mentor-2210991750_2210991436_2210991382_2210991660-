@@ -11,7 +11,7 @@ const PortfolioSummary = ({ portfolioSummary }) => {
       value
     }));
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+  const COLORS = ['#C9A24A', '#57564F', '#6B8E5A', '#B8745C', '#8F6E2E'];
 
   // Format currency
   const formatCurrency = (value) => {

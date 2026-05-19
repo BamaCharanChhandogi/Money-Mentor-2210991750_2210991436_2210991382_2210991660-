@@ -346,7 +346,7 @@ const ExpenseDashboard = () => {
               <XAxis dataKey="date" tick={{ fill: '#64748b', fontSize: 12 }} />
               <YAxis tick={{ fill: '#64748b', fontSize: 12 }} />
               <Tooltip contentStyle={{ backgroundColor: 'white', border: '2px solid #10B981', borderRadius: '12px' }} />
-              <Line type="monotone" dataKey="amount" stroke="#10B981" strokeWidth={3} dot={{ fill: '#10B981', r: 5 }} />
+              <Line type="monotone" dataKey="amount" stroke="#C9A24A" strokeWidth={3} dot={{ fill: '#C9A24A', r: 5 }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
