@@ -4,7 +4,8 @@ import io from 'socket.io-client';
 import { toast } from 'react-hot-toast';
 
 const SocketContext = createContext(null);
-const BASE_URL = 'https://money-mentor-1f1e.onrender.com';
+// const BASE_URL = 'https://money-mentor-1f1e.onrender.com';
+const BASE_URL = 'http://localhost:5000';
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 

@@ -17,6 +17,7 @@ import FinancialAdvice from "./components/FinancialAdvice";
 import ExpenseAnalysis from "./components/ExpenseAnalysis";
 import BudgetAdherence from "./components/BudgetAdherence";
 import Dashboard from "./pages/FinanceAdvise";
+import AITools from "./pages/AITools";
 import InvestmentTracker from "./components/Investment/InvestmentTracker";
 import TransactionsPage from "./pages/TransactionsPage";
 import FamilyDashboard from "./components/Family/FamilyDashboard";
@@ -55,6 +56,7 @@ function App() {
           <Route path="/family/manage" element={<FamilyDashboard />} />
           <Route path="/join-family" element={<JoinFamily />} />
           <Route path="/ai-dashboard" element={<Dashboard />} />
+          <Route path="/financeadvise" element={<AITools />} />
           <Route path="/financial-advice" element={<FinancialAdvice />} />
           <Route path="/expense-analysis" element={<ExpenseAnalysis />} />
           <Route path="/budget-adherence" element={<BudgetAdherence />} />

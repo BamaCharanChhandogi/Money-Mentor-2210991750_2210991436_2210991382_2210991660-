@@ -118,24 +118,82 @@ function Home() {
 
   if (isUnauthenticated) {
     return (
-      <section className="min-h-screen bg-mesh flex items-center justify-center">
-        <div className="glass-card p-12 text-center max-w-sm scale-in shadow-xl border border-white/20">
-          <h2 className="text-2xl font-display font-bold text-slate-900 mb-2">
+      <section style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #f5f0e8 0%, #ede5d0 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: "'Inter', sans-serif",
+      }}>
+        <div style={{
+          background: '#2c2a20',
+          borderRadius: 20,
+          padding: '2.8rem 2.5rem',
+          width: '100%',
+          maxWidth: 380,
+          textAlign: 'center',
+          boxShadow: '0 24px 60px rgba(0,0,0,0.25)',
+          border: '1px solid rgba(201,168,76,0.2)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {/* ambient glow */}
+          <div style={{ position: 'absolute', top: -60, left: '50%', transform: 'translateX(-50%)', width: 240, height: 160, background: 'radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+          {/* Logo */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem', marginBottom: '1.6rem', position: 'relative' }}>
+            <div style={{ width: 36, height: 36, borderRadius: 9, background: '#3a3828', border: '1px solid rgba(201,168,76,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" />
+              </svg>
+            </div>
+            <div style={{ textAlign: 'left' }}>
+              <div style={{ color: '#e8dfc0', fontWeight: 700, fontSize: '0.95rem', fontFamily: "'Outfit', sans-serif", lineHeight: 1.1 }}>Money Mentor</div>
+              <div style={{ color: '#6a6248', fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Smart Finance</div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div style={{ height: 1, background: 'rgba(201,168,76,0.12)', marginBottom: '1.6rem' }} />
+
+          <h2 style={{ color: '#e8dfc0', fontWeight: 800, fontSize: '1.45rem', fontFamily: "'Outfit', sans-serif", lineHeight: 1.15, marginBottom: '0.7rem' }}>
             Welcome to Money-Mentor
           </h2>
-          <p className="text-slate-600 mb-6">
+          <p style={{ color: '#7a7258', fontSize: '0.88rem', lineHeight: 1.65, marginBottom: '1.8rem' }}>
             Please log in to access your financial dashboard.
           </p>
+
           <button
             onClick={() => navigate("/login")}
-            className="btn-primary w-full py-3 font-semibold shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40 transition-all duration-300"
+            style={{
+              width: '100%',
+              background: '#c9a84c',
+              color: '#1a1810',
+              border: 'none',
+              borderRadius: 11,
+              padding: '0.85rem 1.5rem',
+              fontSize: '0.92rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              letterSpacing: '0.02em',
+              transition: 'background 0.2s, transform 0.15s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#d4b558'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#c9a84c'; e.currentTarget.style.transform = 'translateY(0)'; }}
           >
+            <LogIn size={16} />
             Log In
           </button>
         </div>
       </section>
     );
   }
+
 
   if (error) {
     return (

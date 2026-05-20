@@ -17,6 +17,7 @@ const io = new Server(httpServer, {
     origin: [
       process.env.CLIENT_URL,
       'http://localhost:5173',
+      'http://localhost:5174',
       'https://money-mentor-wheat.vercel.app'
     ],
     methods: ["GET", "POST"],
@@ -30,8 +31,9 @@ dbConnection();
 app.use(express.json());
 app.use(cors({
   origin: [
-    process.env.CLIENT_URL, 
-    'http://localhost:5173',  // Keep local development option
+    process.env.CLIENT_URL,
+    'http://localhost:5173',
+    'http://localhost:5174',  // Vite may use 5174 if 5173 is busy
     'https://money-mentor-wheat.vercel.app'
   ],
   credentials: true

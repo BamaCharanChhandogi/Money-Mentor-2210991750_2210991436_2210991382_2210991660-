@@ -160,15 +160,17 @@
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-slate-100;
+    background: #f0ece0;
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-primary-400 to-primary-600 rounded-full;
+    background: linear-gradient(to bottom, #c9a84c, #8a6e2a);
+    border-radius: 9999px;
+    border: 2px solid #f0ece0;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply from-primary-500 to-primary-700;
+    background: linear-gradient(to bottom, #d4b55a, #2c2a20);
   }
 }
 
