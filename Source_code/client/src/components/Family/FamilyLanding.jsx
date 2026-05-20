@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Users, CreditCard, UserPlus, Home, ArrowRight, Shield, TrendingUp } from 'lucide-react';
 
+
 const FamilyLanding = () => {
   const features = [
     {
