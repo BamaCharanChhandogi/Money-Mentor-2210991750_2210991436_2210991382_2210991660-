@@ -10,7 +10,7 @@ const EventDot = (props) => {
   if (!payload?.events?.length) return null;
   return (
     <g>
-      <circle cx={cx} cy={cy} r={7} fill="#f59e0b" stroke="#fff" strokeWidth={2} />
+      <circle cx={cx} cy={cy} r={7} fill="#C9A24A" stroke="#fff" strokeWidth={2} />
       <circle cx={cx} cy={cy} r={3} fill="#fff" />
     </g>
   );
@@ -23,22 +23,21 @@ const CustomTooltip = ({ active, payload }) => {
   const isWarn = balance < 100;
   return (
     <div style={{
-      background: '#1e1b4b',
-      border: `1px solid ${isWarn ? '#fde68a' : '#c7d2fe'}`,
+      background: '#FFFFFF',
+      border: `1px solid #E0D5C8`,
       borderRadius: 12, padding: '12px 16px', minWidth: 170,
-      boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
     }}>
-      <p style={{ color: '#94a3b8', fontSize: 11, margin: '0 0 4px', fontFamily: 'Inter, sans-serif' }}>
+      <p style={{ color: '#7A7A73', fontSize: 11, margin: '0 0 4px', fontFamily: 'Inter, sans-serif' }}>
         {d?.displayDate}
       </p>
-      <p style={{ color: isWarn ? '#fbbf24' : '#34d399', fontSize: 20, fontWeight: 800, margin: '0 0 6px', fontFamily: 'Outfit, sans-serif' }}>
+      <p style={{ color: isWarn ? '#B8745C' : '#6B8E5A', fontSize: 20, fontWeight: 800, margin: '0 0 6px', fontFamily: 'Georgia, serif' }}>
         ${balance.toFixed(2)}
       </p>
       {d?.events?.length > 0 && (
         <div>
-          <p style={{ color: '#f59e0b', fontSize: 10, fontWeight: 700, margin: '0 0 4px' }}>📅 Bill due:</p>
+          <p style={{ color: '#C9A24A', fontSize: 10, fontWeight: 700, margin: '0 0 4px' }}>📅 Bill due:</p>
           {d.events.map((ev, i) => (
-            <p key={i} style={{ color: '#fde68a', fontSize: 11, margin: '2px 0' }}>
+            <p key={i} style={{ color: '#9B7D6B', fontSize: 11, margin: '2px 0' }}>
               {ev.label} — ${ev.amount}
             </p>
           ))}
@@ -50,7 +49,7 @@ const CustomTooltip = ({ active, payload }) => {
 
 export default function ForecastTimeline({ simulation }) {
   if (!simulation?.length) {
-    return <div style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem' }}>No simulation data.</div>;
+    return <div style={{ textAlign: 'center', color: '#7A7A73', padding: '2rem' }}>No simulation data.</div>;
   }
 
   const data = simulation.map(d => ({
@@ -61,22 +60,22 @@ export default function ForecastTimeline({ simulation }) {
   const minBal = Math.min(...data.map(d => d.projectedBalance));
   const maxBal = Math.max(...data.map(d => d.projectedBalance));
   const hasWarn = data.some(d => d.projectedBalance < 100);
-  const lineColor = hasWarn ? '#f59e0b' : '#6366f1';
+  const lineColor = hasWarn ? '#B8745C' : '#2A2925';
 
   return (
     <div>
       {/* Legend */}
-      <div style={{ display: 'flex', gap: '1.25rem', marginBottom: 14, flexWrap: 'wrap', fontSize: 12, color: '#64748b' }}>
+      <div style={{ display: 'flex', gap: '1.25rem', marginBottom: 14, flexWrap: 'wrap', fontSize: 12, color: '#7A7A73' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ width: 12, height: 3, borderRadius: 2, background: lineColor, display: 'inline-block' }} />
           Projected Balance
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#f59e0b', display: 'inline-block' }} />
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#C9A24A', display: 'inline-block' }} />
           Bill Due
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span style={{ width: 12, height: 2, background: 'rgba(239,68,68,0.5)', display: 'inline-block' }} />
+          <span style={{ width: 12, height: 2, background: 'rgba(184,116,92,0.3)', display: 'inline-block' }} />
           Danger (&lt;$100)
         </span>
       </div>
@@ -85,19 +84,19 @@ export default function ForecastTimeline({ simulation }) {
         <AreaChart data={data} margin={{ top: 10, right: 16, left: 8, bottom: 0 }}>
           <defs>
             <linearGradient id="balGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={lineColor} stopOpacity={0.18} />
+              <stop offset="0%" stopColor={lineColor} stopOpacity={0.15} />
               <stop offset="100%" stopColor={lineColor} stopOpacity={0.02} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#E8DCC4" vertical={false} />
           <XAxis
             dataKey="displayDate"
-            tick={{ fill: '#94a3b8', fontSize: 11, fontFamily: 'Inter, sans-serif' }}
-            tickLine={false} axisLine={{ stroke: '#e2e8f0' }}
+            tick={{ fill: '#7A7A73', fontSize: 11, fontFamily: 'Inter, sans-serif' }}
+            tickLine={false} axisLine={{ stroke: '#E0D5C8' }}
             interval={1}
           />
           <YAxis
-            tick={{ fill: '#94a3b8', fontSize: 11, fontFamily: 'Inter, sans-serif' }}
+            tick={{ fill: '#7A7A73', fontSize: 11, fontFamily: 'Inter, sans-serif' }}
             tickLine={false} axisLine={false}
             tickFormatter={v => `$${v}`}
             domain={[Math.min(minBal - 50, -50), maxBal + 80]}
@@ -105,10 +104,10 @@ export default function ForecastTimeline({ simulation }) {
           />
           <Tooltip content={<CustomTooltip />} />
           <ReferenceLine
-            y={100} stroke="rgba(239,68,68,0.5)" strokeDasharray="5 3"
-            label={{ value: '$100 threshold', fill: '#ef4444', fontSize: 10, position: 'insideTopRight' }}
+            y={100} stroke="rgba(184,116,92,0.3)" strokeDasharray="5 3"
+            label={{ value: '$100 threshold', fill: '#B8745C', fontSize: 10, position: 'insideTopRight' }}
           />
-          <ReferenceLine y={0} stroke="rgba(239,68,68,0.25)" strokeDasharray="3 2" />
+          <ReferenceLine y={0} stroke="rgba(184,116,92,0.15)" strokeDasharray="3 2" />
           <Area
             type="monotone" dataKey="projectedBalance"
             stroke={lineColor} strokeWidth={2.5}

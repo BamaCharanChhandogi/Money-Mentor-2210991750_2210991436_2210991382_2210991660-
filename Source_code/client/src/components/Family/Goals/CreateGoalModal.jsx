@@ -36,9 +36,9 @@ const CreateGoalModal = ({ familyId, onClose, onSuccess }) => {
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in">
 
                 {/* Header */}
-                <div className="bg-gradient-to-r from-primary-600 to-primary-700 p-6 flex justify-between items-center text-white">
+                <div className="p-6 flex justify-between items-center text-white" style={{ backgroundColor: '#2A2925' }}>
                     <div className="flex items-center gap-3">
-                        <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                        <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}>
                             <Target className="w-6 h-6" />
                         </div>
                         <h2 className="text-xl font-bold">New Financial Goal</h2>
@@ -51,28 +51,30 @@ const CreateGoalModal = ({ familyId, onClose, onSuccess }) => {
                 {/* Body */}
                 <form onSubmit={handleSubmit} className="p-6 space-y-5">
                     <div>
-                        <label className="block text-sm font-semibold text-slate-700 mb-2">Goal Name</label>
+                        <label className="block text-sm font-semibold mb-2" style={{ color: '#57564F' }}>Goal Name</label>
                         <input
                             type="text"
                             required
                             placeholder="e.g. New Car, Vacation"
-                            className="input-primary w-full"
+                            className="w-full px-4 py-3 rounded-lg"
+                            style={{ backgroundColor: '#F4F0D8', color: '#2A2925', border: '1px solid #E0D5C8' }}
                             value={formData.name}
                             onChange={e => setFormData({ ...formData, name: e.target.value })}
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-semibold text-slate-700 mb-2">Target Amount</label>
+                        <label className="block text-sm font-semibold mb-2" style={{ color: '#57564F' }}>Target Amount</label>
                         <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" style={{ color: '#7A7A73' }}>
                                 <DollarSign className="w-4 h-4" />
                             </div>
                             <input
                                 type="number"
                                 required
                                 placeholder="0.00"
-                                className="input-primary w-full pl-9"
+                                className="w-full px-4 py-3 rounded-lg pl-9"
+                                style={{ backgroundColor: '#F4F0D8', color: '#2A2925', border: '1px solid #E0D5C8' }}
                                 min="0"
                                 step="0.01"
                                 value={formData.targetAmount}
@@ -82,14 +84,15 @@ const CreateGoalModal = ({ familyId, onClose, onSuccess }) => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-semibold text-slate-700 mb-2">Target Date (Optional)</label>
+                        <label className="block text-sm font-semibold mb-2" style={{ color: '#57564F' }}>Target Date (Optional)</label>
                         <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" style={{ color: '#7A7A73' }}>
                                 <Calendar className="w-4 h-4" />
                             </div>
                             <input
                                 type="date"
-                                className="input-primary w-full pl-9"
+                                className="w-full px-4 py-3 rounded-lg pl-9"
+                                style={{ backgroundColor: '#F4F0D8', color: '#2A2925', border: '1px solid #E0D5C8' }}
                                 value={formData.deadline}
                                 onChange={e => setFormData({ ...formData, deadline: e.target.value })}
                             />
@@ -100,14 +103,16 @@ const CreateGoalModal = ({ familyId, onClose, onSuccess }) => {
                         <button
                             type="button"
                             onClick={onClose}
-                            className="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 transition-colors"
+                            className="flex-1 py-2.5 rounded-xl font-semibold hover:shadow-md transition-all"
+                            style={{ backgroundColor: '#FFFFFF', color: '#57564F', border: '1px solid #E0D5C8' }}
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex-1 py-2.5 rounded-xl bg-primary-600 text-white font-semibold shadow-lg hover:bg-primary-700 transition-colors flex justify-center items-center"
+                            className="flex-1 py-2.5 rounded-xl text-white font-semibold shadow-lg hover:shadow-xl transition-all flex justify-center items-center"
+                            style={{ backgroundColor: '#2A2925' }}
                         >
                             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Create Goal'}
                         </button>

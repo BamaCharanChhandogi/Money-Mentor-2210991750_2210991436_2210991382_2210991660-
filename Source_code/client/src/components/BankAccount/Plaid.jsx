@@ -49,7 +49,7 @@ const Toast = ({ message, type, onClose }) => {
   }, [onClose]);
 
   return (
-    <div className={`fixed top-6 right-6 z-50 p-4 rounded-xl shadow-2xl transform transition-all duration-300 ease-in-out 
+    <div className={`fixed top-6 right-6 z-50 p-4 rounded-xl shadow-2xl transform transition-all duration-300 ease-in-out
       ${type === 'error'
         ? 'bg-red-600 text-white border-2 border-red-700'
         : 'bg-success-600 text-white border-2 border-success-700'
@@ -88,16 +88,18 @@ const PlaidLinkButton = ({ onSuccess, onExit }) => {
     onExit: (err, metadata) => {
       onExit(err, metadata);
     },
+    discreetMode: true,
   });
 
   return (
     <button
       onClick={() => open()}
       disabled={!ready}
-      className="btn-primary w-full py-4 flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-primary-500/25"
+      className="px-8 py-3 rounded-lg font-bold text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      style={{ backgroundColor: '#2A2925' }}
+      data-plaid-connect
     >
-      <Building className="h-5 w-5" />
-      <span>Connect Bank Account</span>
+      + Connect bank
     </button>
   );
 };
@@ -117,7 +119,7 @@ const AccountCard = ({ account, onSync, onDelete }) => {
     e.stopPropagation();
     if (!showConfirm) {
       setShowConfirm(true);
-      setTimeout(() => setShowConfirm(false), 3000); // 3-second window
+      setTimeout(() => setShowConfirm(false), 3000);
       return;
     }
 
@@ -130,63 +132,69 @@ const AccountCard = ({ account, onSync, onDelete }) => {
       });
   };
 
+  const colors = ['#2A2925', '#B8745C', '#9B7D6B', '#C9A24A', '#57564F', '#6B8E5A'];
+  const colorIndex = Math.abs(account._id.charCodeAt(0)) % colors.length;
+  const bgColor = colors[colorIndex];
+  const textColor = '#FFFFFF';
+
   return (
-    <div className={`glass-card p-6 transition-all duration-300 ${deleting ? 'opacity-50 grayscale' : 'hover:shadow-2xl hover:-translate-y-1'}`}>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="p-3 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl shadow-lg">
-            <CreditCard className="h-6 w-6 text-white" />
+    <div
+      className={`p-6 rounded-2xl transition-all duration-300 hover:shadow-xl ${deleting ? 'opacity-50 grayscale' : ''}`}
+      style={{ backgroundColor: bgColor, color: textColor }}
+    >
+      <div className="flex items-start justify-between mb-6">
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#FFFFFF' }}>
+            {account.accountName[0]?.toUpperCase()}
           </div>
           <div>
-            <h3 className="text-lg font-bold text-slate-900">{account.accountName}</h3>
-            <p className="text-sm text-slate-500 capitalize">
-              {account.accountType} • {account.accountSubtype}
-            </p>
+            <h3 className="text-lg font-bold">{account.accountName}</h3>
+            <p className="text-xs opacity-80 capitalize">{account.accountSubtype} · {account.accountType}</p>
             {account.lastUpdated && (
-              <p className="text-[10px] text-slate-400 mt-1">
-                Last synced: {new Date(account.lastUpdated).toLocaleString()}
+              <p className="text-[10px] opacity-60 mt-1">
+                Synced {new Date(account.lastUpdated).toLocaleTimeString()}
               </p>
             )}
           </div>
         </div>
-        <div className="flex items-center space-x-3">
-          <div className="text-right mr-4">
-            <p className="text-2xl font-bold text-slate-900">
-              ${account.balance?.current?.toFixed(2) || '0.00'}
-            </p>
-            <p className="text-xs text-slate-500 uppercase tracking-wider font-medium">Current Balance</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <button
-              className="p-2.5 rounded-lg bg-primary-50 hover:bg-primary-100 transition-all duration-300 focus:outline-none"
-              onClick={handleSync}
-              disabled={syncing || deleting}
-              title="Sync Transactions"
-            >
-              {syncing ? (
-                <Loader2 className="h-4 w-4 text-primary-600 animate-spin" />
-              ) : (
-                <RefreshCw className="h-4 w-4 text-primary-600" />
-              )}
-            </button>
-            <button
-              className={`p-2.5 rounded-lg transition-all duration-300 focus:outline-none flex items-center gap-2 ${showConfirm ? 'bg-red-600 text-white w-auto px-4' : 'bg-red-50 text-red-600'
-                }`}
-              onClick={handleDelete}
-              disabled={syncing || deleting}
-            >
-              {deleting ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : showConfirm ? (
-                <>
-                  <Trash2 className="h-4 w-4" />
-                  <span className="text-xs font-bold whitespace-nowrap">Click again to confirm</span>
-                </>
-              ) : (
-                <Trash2 className="h-4 w-4" />
-              )}
-            </button>
-          </div>
+        <div className="flex gap-2">
+          <button
+            className="p-2 rounded-lg opacity-70 hover:opacity-100 transition-opacity"
+            onClick={handleSync}
+            disabled={syncing || deleting}
+            title="Sync"
+          >
+            {syncing ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <RefreshCw className="h-4 w-4" />
+            )}
+          </button>
+          <button
+            className="p-2 rounded-lg opacity-70 hover:opacity-100 transition-opacity"
+            onClick={handleDelete}
+            disabled={syncing || deleting}
+            title="Delete"
+          >
+            {deleting ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Trash2 className="h-4 w-4" />
+            )}
+          </button>
+        </div>
+      </div>
+
+      <p className="text-4xl font-bold mb-4">
+        ${account.balance?.current?.toFixed(0)}<span style={{ fontSize: '18px' }}>.</span>{String(Math.round((account.balance?.current || 0) * 100) % 100).padStart(2, '0')}
+      </p>
+      <div className="flex items-center justify-between">
+        <p className="text-xs opacity-70">···· {String(account.mask || '0000').slice(-4)}</p>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'rgba(255,255,255,0.6)' }}></div>
+          <p className="text-xs opacity-70">
+            {account.lastUpdated ? `Synced ${new Date(account.lastUpdated).toLocaleString()}` : 'Not synced'}
+          </p>
         </div>
       </div>
     </div>
@@ -196,18 +204,18 @@ const AccountCard = ({ account, onSync, onDelete }) => {
 const AccountList = ({ accounts, onSync, onDelete }) => {
   if (!accounts || accounts.length === 0) {
     return (
-      <div className="text-center py-16 glass-card">
-        <div className="inline-flex p-4 bg-primary-100 rounded-2xl mb-4">
-          <CreditCard className="h-10 w-10 text-primary-600" />
+      <div className="text-center py-16 p-8 rounded-2xl" style={{ backgroundColor: '#FFFFFF', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+        <div className="inline-flex p-4 rounded-2xl mb-4" style={{ backgroundColor: '#F0E8DA' }}>
+          <CreditCard className="h-10 w-10" style={{ color: '#2A2925' }} />
         </div>
-        <p className="text-lg font-semibold text-slate-900 mb-2">No connected accounts found</p>
-        <p className="text-sm text-slate-500">Connect a bank account to get started</p>
+        <p className="text-lg font-bold mb-2" style={{ color: '#2A2925' }}>No connected accounts found</p>
+        <p className="text-sm" style={{ color: '#7A7A73' }}>Connect a bank account to get started</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {accounts.map((account) => (
         <AccountCard
           key={account._id}
@@ -283,8 +291,14 @@ const PlaidIntegration = () => {
   };
 
   return (
-    <div className="min-h-screen bg-mesh py-8">
-      <div className="container mx-auto px-4 lg:px-8 space-y-8">
+    <div className="min-h-screen" style={{ backgroundColor: '#F4F0D8' }}>
+      <style>{`
+        body { background-color: #F4F0D8; }
+        .serif-title { font-family: Georgia, 'Times New Roman', serif; }
+        .serif-italic { font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
+      `}</style>
+
+      <div className="container mx-auto px-6 lg:px-12 py-8">
         {toastMessage && (
           <Toast
             message={toastMessage.text}
@@ -293,65 +307,92 @@ const PlaidIntegration = () => {
           />
         )}
 
-        {/* Header */}
-        <div className="glass-card p-6 shadow-xl fade-in-up">
-          <div className="flex items-center space-x-4">
-            <div className="p-3 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl shadow-lg">
-              <Building2 className="w-8 h-8 text-white" />
+        {/* Breadcrumb */}
+        <p className="text-sm font-semibold mb-8" style={{ color: '#7A7A73', letterSpacing: '0.1em' }}>
+          SERVICES › BANK ACCOUNTS
+        </p>
+
+        {/* Header Section */}
+        <div className="mb-12">
+          <h1 className="serif-title text-5xl md:text-6xl font-bold mb-6" style={{ color: '#2A2925' }}>
+            Banks & <span className="serif-italic" style={{ color: '#9B7D6B' }}>cards.</span>
+          </h1>
+          <p className="text-base max-w-2xl" style={{ color: '#57564F', lineHeight: '1.6' }}>
+            Connect every account once, read-only — Money Mentor watches your balances, never moves a dollar. The vault stays with your bank.
+          </p>
+        </div>
+
+        {/* Connect Another Account Banner */}
+        <div className="p-8 rounded-2xl mb-12" style={{ backgroundColor: '#F8F3CE', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div className="flex flex-col gap-4 flex-1">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl flex-shrink-0" style={{ backgroundColor: '#FFFFFF' }}>
+                  <Building className="w-6 h-6" style={{ color: '#2A2925' }} />
+                </div>
+                <h3 className="font-bold text-xl lg:text-2xl" style={{ color: '#2A2925' }}>Connect another account.</h3>
+              </div>
+              <p className="text-sm lg:text-base leading-relaxed" style={{ color: '#57564F' }}>
+                Add checking, savings, credit cards, or brokerages — 12,000+ institutions <span style={{ fontWeight: '600' }}>supported</span> · powered by Plaid · read-only · 60 seconds.
+              </p>
             </div>
-            <div>
-              <h1 className="text-3xl font-display font-bold text-slate-900">Bank Accounts</h1>
-              <p className="text-slate-600">Securely connect and manage your bank accounts</p>
+            <div className="flex-shrink-0 w-full lg:w-auto">
+              <PlaidLinkButton
+                onSuccess={handlePlaidSuccess}
+                onExit={handlePlaidExit}
+              />
             </div>
           </div>
         </div>
 
-        {/* Connect Button */}
-        <div className="fade-in-up" style={{ animationDelay: '0.1s' }}>
-          <PlaidLinkButton
-            onSuccess={handlePlaidSuccess}
-            onExit={handlePlaidExit}
-          />
-        </div>
+        {/* Connected Accounts Section */}
+        <div className="mb-12">
+          <div className="mb-8">
+            <h2 className="text-3xl font-serif font-bold mb-2" style={{ color: '#2A2925' }}>Connected accounts</h2>
+            <p className="text-sm" style={{ color: '#7A7A73' }}>{accounts.length} active · 3 institutions · syncing automatically</p>
+          </div>
 
-        {/* Accounts List */}
-        <div className="fade-in-up" style={{ animationDelay: '0.2s' }}>
+          {/* Accounts Grid */}
           {loading ? (
-            <div className="flex justify-center items-center p-16 glass-card">
+            <div className="flex justify-center items-center p-16 rounded-2xl" style={{ backgroundColor: '#FFFFFF' }}>
               <div className="text-center">
-                <Loader2 className="h-12 w-12 text-primary-600 animate-spin mx-auto mb-4" />
-                <p className="text-slate-600 font-medium">Loading accounts...</p>
+                <Loader2 className="h-12 w-12 animate-spin mx-auto mb-4" style={{ color: '#2A2925' }} />
+                <p style={{ color: '#57564F', fontWeight: '500' }}>Loading accounts...</p>
               </div>
             </div>
           ) : (
-            <AccountList
-              accounts={accounts}
-              onSync={handleSync}
-              onDelete={handleDeleteAccount}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {accounts.map((account) => (
+                <AccountCard
+                  key={account._id}
+                  account={account}
+                  onSync={handleSync}
+                  onDelete={handleDeleteAccount}
+                />
+              ))}
+              {/* Add Another Account Card */}
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector('[data-plaid-connect]')?.click();
+                }}
+                className="p-6 rounded-2xl flex flex-col items-center justify-center text-center transition-all hover:shadow-lg"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '2px dashed #E0D5C8',
+                  color: '#2A2925',
+                  minHeight: '240px',
+                  cursor: 'pointer'
+                }}
+              >
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#57564F', color: '#FFFFFF' }}>
+                  <span style={{ fontSize: '24px', fontWeight: 'bold' }}>+</span>
+                </div>
+                <h3 className="font-bold mb-2" style={{ fontSize: '16px' }}>Add another account</h3>
+                <p className="text-sm" style={{ color: '#7A7A73' }}>Connect via Plaid in under sixty seconds.</p>
+              </button>
+            </div>
           )}
-        </div>
-
-        {/* Info Section */}
-        <div className="glass-card p-6 fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <h3 className="text-lg font-bold text-slate-900 mb-4">Why connect your bank?</h3>
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { title: "Auto-sync", desc: "Transactions imported automatically" },
-              { title: "Secure", desc: "Bank-level 256-bit encryption" },
-              { title: "Real-time", desc: "Up-to-date balance information" }
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-start space-x-3">
-                <div className="p-2 bg-success-100 rounded-lg">
-                  <Check className="h-4 w-4 text-success-600" />
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-900">{item.title}</p>
-                  <p className="text-sm text-slate-500">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>

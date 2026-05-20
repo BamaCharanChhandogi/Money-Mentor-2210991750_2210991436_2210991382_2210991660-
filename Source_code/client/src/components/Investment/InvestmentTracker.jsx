@@ -118,39 +118,53 @@ const InvestmentTracker = () => {
     }))
     : [];
 
-  const COLORS = ['#C9A24A', '#57564F', '#6B8E5A', '#B8745C', '#8F6E2E'];
+  const COLORS = ['#2A2925', '#9B7D6B', '#C9A24A', '#B8745C', '#6B8E5A'];
 
   return (
-    <div className="min-h-screen bg-mesh py-8">
-      <div className="container mx-auto px-4 lg:px-8 space-y-8">
-        {/* Header */}
-        <div className="glass-card p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-xl fade-in-up">
-          <div className="flex items-center space-x-4">
-            <div className="p-3 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl shadow-lg">
-              <Wallet className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-display font-bold text-slate-900">
-                Investment Portfolio
-              </h1>
-              <p className="text-slate-600">
-                Track and manage your investments
-              </p>
-            </div>
-          </div>
+    <div style={{ minHeight: '100vh', backgroundColor: '#F4F0D8', paddingTop: '2rem', paddingBottom: '2rem' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: '1rem', paddingRight: '1rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        {/* Breadcrumb */}
+        <p style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '2rem', color: '#7A7A73', letterSpacing: '0.1em' }}>
+          SERVICES › INVESTMENTS
+        </p>
+
+        {/* Header Section */}
+        <div style={{ marginBottom: '3rem' }}>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 6vw, 3.75rem)', fontWeight: '800', marginBottom: '1.5rem', color: '#2A2925', fontFamily: 'Georgia, serif' }}>
+            Investment <span style={{ color: '#9B7D6B', fontStyle: 'italic' }}>portfolio.</span>
+          </h1>
+          <p style={{ fontSize: '1rem', maxWidth: '42rem', color: '#57564F', lineHeight: '1.6' }}>
+            Track stocks, crypto, ETFs, and bonds in one place. Monitor your performance, asset allocation, and build wealth with confidence.
+          </p>
+        </div>
+
+        {/* Update Button */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
           <button
             onClick={handleUpdatePrices}
             disabled={isUpdatePricesLoading}
-            className="btn-primary flex items-center space-x-2 disabled:opacity-50 shadow-primary-500/25"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              backgroundColor: '#2A2925',
+              color: '#FFFFFF',
+              border: 'none',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '0.75rem',
+              fontWeight: '600',
+              cursor: isUpdatePricesLoading ? 'not-allowed' : 'pointer',
+              opacity: isUpdatePricesLoading ? 0.5 : 1,
+            }}
           >
             {isUpdatePricesLoading ? (
               <>
-                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                <div style={{ animation: 'spin 1s linear infinite', width: '1.25rem', height: '1.25rem', border: '2px solid #FFFFFF', borderTopColor: 'transparent', borderRadius: '50%' }}></div>
                 <span>Updating...</span>
               </>
             ) : (
               <>
-                <RefreshCw className="w-5 h-5" />
+                <RefreshCw style={{ width: '1.25rem', height: '1.25rem' }} />
                 <span>Update Prices</span>
               </>
             )}
@@ -159,50 +173,62 @@ const InvestmentTracker = () => {
 
         {/* Portfolio Overview */}
         {portfolioSummary && (
-          <div className="grid md:grid-cols-3 gap-6 fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <div className="stat-card-gradient bg-gradient-to-br from-primary-500 to-primary-700 p-6 rounded-2xl">
-              <div className="flex justify-between items-center mb-4">
-                <div className="bg-white/20 p-3 rounded-xl backdrop-blur-sm">
-                  <DollarSign className="text-white h-6 w-6" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
+            {/* Total Portfolio Value Card */}
+            <div style={{ backgroundColor: '#FFFFFF', padding: '2rem', borderRadius: '1rem', border: '1px solid #E0D5C8', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', transition: 'transform 0.2s, box-shadow 0.2s' }} onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }} onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+                  <div style={{ backgroundColor: '#F8F3CE', padding: '0.75rem', borderRadius: '0.75rem' }}>
+                    <DollarSign style={{ width: '1.5rem', height: '1.5rem', color: '#2A2925' }} />
+                  </div>
+                  <span style={{ backgroundColor: '#F8F3CE', padding: '0.25rem 0.75rem', borderRadius: '0.5rem', fontSize: '0.75rem', fontWeight: '700', color: '#2A2925' }}>+5.2%</span>
                 </div>
-                <TrendingUp className="w-6 h-6 text-white/80" />
+                <span style={{ fontSize: '0.875rem', fontWeight: '500', color: '#7A7A73', display: 'block', marginBottom: '0.75rem' }}>Total Portfolio Value</span>
+                <div style={{ fontSize: '2.5rem', fontWeight: '800', color: '#2A2925', fontFamily: 'Georgia, serif' }}>
+                  ${portfolioSummary.performanceSummary.totalValue?.toFixed(2)}
+                </div>
               </div>
-              <span className="text-sm font-medium text-white/80">Total Portfolio Value</span>
-              <div className="text-4xl font-bold text-white mt-2">
-                ${portfolioSummary.performanceSummary.totalValue?.toFixed(2)}
-              </div>
-              <div className="flex items-center mt-3 text-xs text-white/90">
-                <ArrowUpRight className="w-4 h-4 mr-1" />
-                <span>+5.2% this month</span>
+              <div style={{ display: 'flex', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #E0D5C8', fontSize: '0.75rem', color: '#7A7A73' }}>
+                <ArrowUpRight style={{ width: '1rem', height: '1rem', marginRight: '0.25rem', color: '#6B8E5A' }} />
+                <span>This month</span>
               </div>
             </div>
 
-            <div className="stat-card-gradient bg-gradient-to-br from-success-500 to-success-700 p-6 rounded-2xl">
-              <div className="flex justify-between items-center mb-4">
-                <div className="bg-white/20 p-3 rounded-xl backdrop-blur-sm">
-                  {portfolioSummary.performanceSummary.overallReturn > 0 ? (
-                    <TrendingUp className="text-white h-6 w-6" />
-                  ) : (
-                    <TrendingDown className="text-white h-6 w-6" />
-                  )}
+            {/* Total Return Card */}
+            <div style={{ backgroundColor: '#FFFFFF', padding: '2rem', borderRadius: '1rem', border: '1px solid #E0D5C8', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', transition: 'transform 0.2s, box-shadow 0.2s' }} onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }} onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
+                  <div style={{ backgroundColor: portfolioSummary.performanceSummary.overallReturn > 0 ? '#F8F3CE' : '#F4F0D8', padding: '0.75rem', borderRadius: '0.75rem' }}>
+                    {portfolioSummary.performanceSummary.overallReturn > 0 ? (
+                      <TrendingUp style={{ width: '1.5rem', height: '1.5rem', color: '#6B8E5A' }} />
+                    ) : (
+                      <TrendingDown style={{ width: '1.5rem', height: '1.5rem', color: '#B8745C' }} />
+                    )}
+                  </div>
+                  <span style={{ backgroundColor: portfolioSummary.performanceSummary.overallReturn > 0 ? '#F8F3CE' : '#F4F0D8', padding: '0.25rem 0.75rem', borderRadius: '0.5rem', fontSize: '0.75rem', fontWeight: '700', color: portfolioSummary.performanceSummary.overallReturn > 0 ? '#6B8E5A' : '#B8745C' }}>
+                    {portfolioSummary.performanceSummary.overallReturn > 0 ? 'Positive' : 'Negative'}
+                  </span>
+                </div>
+                <span style={{ fontSize: '0.875rem', fontWeight: '500', color: '#7A7A73', display: 'block', marginBottom: '0.75rem' }}>Total Return</span>
+                <div style={{ fontSize: '2.5rem', fontWeight: '800', color: portfolioSummary.performanceSummary.overallReturn > 0 ? '#6B8E5A' : '#B8745C', fontFamily: 'Georgia, serif' }}>
+                  {portfolioSummary.performanceSummary.overallReturn?.toFixed(2)}%
                 </div>
               </div>
-              <span className="text-sm font-medium text-white/80">Total Return</span>
-              <div className="text-4xl font-bold text-white mt-2">
-                {portfolioSummary.performanceSummary.overallReturn?.toFixed(2)}%
-              </div>
-              <div className="flex items-center mt-3 text-xs text-white/90">
-                <Info className="w-4 h-4 mr-1" />
+              <div style={{ display: 'flex', alignItems: 'center', marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #E0D5C8', fontSize: '0.75rem', color: '#7A7A73' }}>
+                <Info style={{ width: '1rem', height: '1rem', marginRight: '0.25rem' }} />
                 <span>Since inception</span>
               </div>
             </div>
 
-            <div className="glass-card p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-bold text-slate-900">Asset Allocation</h3>
-                <PieChartIcon className="w-6 h-6 text-primary-500" />
+            {/* Asset Allocation Card */}
+            <div style={{ backgroundColor: '#FFFFFF', padding: '2rem', borderRadius: '1rem', border: '1px solid #E0D5C8', display: 'flex', flexDirection: 'column', transition: 'transform 0.2s, box-shadow 0.2s' }} onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }} onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                <h3 style={{ fontSize: '1.125rem', fontWeight: '800', color: '#2A2925', margin: 0, fontFamily: 'Georgia, serif' }}>Asset Allocation</h3>
+                <div style={{ backgroundColor: '#F8F3CE', padding: '0.5rem', borderRadius: '0.75rem' }}>
+                  <PieChartIcon style={{ width: '1.5rem', height: '1.5rem', color: '#2A2925' }} />
+                </div>
               </div>
-              <ResponsiveContainer width="100%" height={180}>
+              <ResponsiveContainer width="100%" height={200}>
                 <PieChart>
                   <Pie
                     data={assetAllocationData}
@@ -226,19 +252,19 @@ const InvestmentTracker = () => {
         )}
 
         {/* Add Investment Form */}
-        <div className="glass-card p-8 fade-in-up" style={{ animationDelay: '0.2s' }}>
-          <h2 className="text-2xl font-bold mb-6 text-slate-900 flex items-center gap-3">
-            <PlusCircle className="w-6 h-6 text-primary-600" />
+        <div style={{ backgroundColor: '#FFFFFF', padding: '2rem', borderRadius: '1rem', border: '1px solid #E0D5C8' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#2A2925', display: 'flex', alignItems: 'center', gap: '0.75rem', fontFamily: 'Georgia, serif' }}>
+            <PlusCircle style={{ width: '1.5rem', height: '1.5rem', color: '#2A2925' }} />
             Add New Investment
           </h2>
-          <form onSubmit={handleAddInvestment} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          <form onSubmit={handleAddInvestment} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
               <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Symbol</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: '#57564F' }}>Symbol</label>
                 <select
                   value={newInvestment.symbol}
                   onChange={(e) => setNewInvestment({ ...newInvestment, symbol: e.target.value })}
-                  className="input-primary"
+                  style={{ width: '100%', padding: '0.75rem', backgroundColor: '#F4F0D8', border: '1px solid #E0D5C8', borderRadius: '0.5rem', color: '#2A2925', fontSize: '0.875rem' }}
                   required
                 >
                   <option value="">Select Symbol</option>
@@ -254,25 +280,25 @@ const InvestmentTracker = () => {
                 </select>
               </div>
               <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Name</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: '#57564F' }}>Name</label>
                 <input
                   type="text"
                   value={newInvestment.name}
                   onChange={(e) => setNewInvestment({ ...newInvestment, name: e.target.value })}
-                  className="input-primary"
+                  style={{ width: '100%', padding: '0.75rem', backgroundColor: '#F4F0D8', border: '1px solid #E0D5C8', borderRadius: '0.5rem', color: '#2A2925', fontSize: '0.875rem' }}
                   placeholder="Investment name"
                   required
                 />
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
               <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Type</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: '#57564F' }}>Type</label>
                 <select
                   value={newInvestment.type}
                   onChange={(e) => setNewInvestment({ ...newInvestment, type: e.target.value })}
-                  className="input-primary"
+                  style={{ width: '100%', padding: '0.75rem', backgroundColor: '#F4F0D8', border: '1px solid #E0D5C8', borderRadius: '0.5rem', color: '#2A2925', fontSize: '0.875rem' }}
                 >
                   <option value="stock">Stock</option>
                   <option value="bond">Bond</option>
@@ -281,89 +307,88 @@ const InvestmentTracker = () => {
                 </select>
               </div>
               <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Quantity</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: '#57564F' }}>Quantity</label>
                 <input
                   type="number"
                   value={newInvestment.quantity}
                   onChange={(e) => setNewInvestment({ ...newInvestment, quantity: parseFloat(e.target.value) })}
-                  className="input-primary"
+                  style={{ width: '100%', padding: '0.75rem', backgroundColor: '#F4F0D8', border: '1px solid #E0D5C8', borderRadius: '0.5rem', color: '#2A2925', fontSize: '0.875rem' }}
                   placeholder="0"
                   required
                 />
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
               <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Purchase Price</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: '#57564F' }}>Purchase Price</label>
                 <input
                   type="number"
                   value={newInvestment.purchasePrice}
                   onChange={(e) => setNewInvestment({ ...newInvestment, purchasePrice: parseFloat(e.target.value) })}
-                  className="input-primary"
+                  style={{ width: '100%', padding: '0.75rem', backgroundColor: '#F4F0D8', border: '1px solid #E0D5C8', borderRadius: '0.5rem', color: '#2A2925', fontSize: '0.875rem' }}
                   placeholder="0.00"
                   required
                 />
               </div>
               <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Purchase Date</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '600', color: '#57564F' }}>Purchase Date</label>
                 <input
                   type="date"
                   value={newInvestment.purchaseDate}
                   onChange={(e) => setNewInvestment({ ...newInvestment, purchaseDate: e.target.value })}
-                  className="input-primary"
+                  style={{ width: '100%', padding: '0.75rem', backgroundColor: '#F4F0D8', border: '1px solid #E0D5C8', borderRadius: '0.5rem', color: '#2A2925', fontSize: '0.875rem' }}
                   required
                 />
               </div>
             </div>
 
-            <button type="submit" className="btn-success w-full md:w-auto px-8">
+            <button type="submit" style={{ backgroundColor: '#2A2925', color: '#FFFFFF', padding: '0.75rem 2rem', borderRadius: '0.75rem', border: 'none', fontWeight: '600', cursor: 'pointer', alignSelf: 'flex-start' }}>
               Add Investment
             </button>
           </form>
         </div>
 
         {/* Investments Table */}
-        <div className="glass-card p-8 overflow-x-auto fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <h2 className="text-2xl font-bold mb-6 text-slate-900">
+        <div style={{ backgroundColor: '#FFFFFF', padding: '2rem', borderRadius: '1rem', border: '1px solid #E0D5C8', overflowX: 'auto' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#2A2925', fontFamily: 'Georgia, serif' }}>
             Current Investments
           </h2>
-          <div className="overflow-hidden rounded-xl border border-slate-200">
-            <table className="w-full">
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200">
-                  <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase">Symbol</th>
-                  <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase">Name</th>
-                  <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase">Type</th>
-                  <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase">Quantity</th>
-                  <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase">Purchase</th>
-                  <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase">Current</th>
-                  <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase">Total Value</th>
-                  <th className="p-4 text-left text-xs font-bold text-slate-500 uppercase">Return</th>
+                <tr style={{ backgroundColor: '#F8F3CE', borderBottom: '1px solid #E0D5C8' }}>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: '700', color: '#7A7A73', textTransform: 'uppercase' }}>Symbol</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: '700', color: '#7A7A73', textTransform: 'uppercase' }}>Name</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: '700', color: '#7A7A73', textTransform: 'uppercase' }}>Type</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: '700', color: '#7A7A73', textTransform: 'uppercase' }}>Quantity</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: '700', color: '#7A7A73', textTransform: 'uppercase' }}>Purchase</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: '700', color: '#7A7A73', textTransform: 'uppercase' }}>Current</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: '700', color: '#7A7A73', textTransform: 'uppercase' }}>Total Value</th>
+                  <th style={{ padding: '1rem', textAlign: 'left', fontSize: '0.75rem', fontWeight: '700', color: '#7A7A73', textTransform: 'uppercase' }}>Return</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody>
                 {investments.map((investment) => {
                   const returnPercent = ((investment.currentPrice - investment.purchasePrice) / investment.purchasePrice) * 100;
                   const isPositive = returnPercent > 0;
                   return (
-                    <tr key={investment._id} className="hover:bg-slate-50 transition-colors">
-                      <td className="p-4 font-semibold text-slate-900">{investment.symbol}</td>
-                      <td className="p-4 text-slate-600">{investment.name}</td>
-                      <td className="p-4">
-                        <span className="px-2 py-1 rounded-lg text-xs font-medium bg-slate-100 text-slate-600">
+                    <tr key={investment._id} style={{ borderBottom: '1px solid #E0D5C8', transition: 'background-color 0.2s' }} onMouseEnter={e => e.currentTarget.style.backgroundColor = '#F8F3CE'} onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}>
+                      <td style={{ padding: '1rem', fontWeight: '600', color: '#2A2925' }}>{investment.symbol}</td>
+                      <td style={{ padding: '1rem', color: '#7A7A73' }}>{investment.name}</td>
+                      <td style={{ padding: '1rem' }}>
+                        <span style={{ paddingX: '0.5rem', paddingY: '0.25rem', borderRadius: '0.5rem', fontSize: '0.75rem', fontWeight: '500', backgroundColor: '#F8F3CE', color: '#2A2925' }}>
                           {investment.type}
                         </span>
                       </td>
-                      <td className="p-4 text-slate-600">{investment.quantity}</td>
-                      <td className="p-4 text-slate-600">${investment.purchasePrice.toFixed(2)}</td>
-                      <td className="p-4 text-slate-900 font-semibold">${investment.currentPrice.toFixed(2)}</td>
-                      <td className="p-4 text-slate-900 font-bold">
+                      <td style={{ padding: '1rem', color: '#7A7A73' }}>{investment.quantity}</td>
+                      <td style={{ padding: '1rem', color: '#7A7A73' }}>${investment.purchasePrice.toFixed(2)}</td>
+                      <td style={{ padding: '1rem', color: '#2A2925', fontWeight: '600' }}>${investment.currentPrice.toFixed(2)}</td>
+                      <td style={{ padding: '1rem', color: '#2A2925', fontWeight: 'bold' }}>
                         ${(investment.quantity * investment.currentPrice).toFixed(2)}
                       </td>
-                      <td className="p-4">
-                        <span className={`inline-flex items-center space-x-1 px-2 py-1 rounded-lg text-sm font-bold ${isPositive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                          }`}>
+                      <td style={{ padding: '1rem' }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', paddingX: '0.5rem', paddingY: '0.25rem', borderRadius: '0.5rem', fontSize: '0.875rem', fontWeight: 'bold', backgroundColor: isPositive ? '#F8F3CE' : '#F4F0D8', color: isPositive ? '#6B8E5A' : '#B8745C' }}>
                           {isPositive ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
                           <span>{returnPercent.toFixed(2)}%</span>
                         </span>
@@ -375,6 +400,13 @@ const InvestmentTracker = () => {
             </table>
           </div>
         </div>
+
+        <style>{`
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
       </div>
     </div>
   );

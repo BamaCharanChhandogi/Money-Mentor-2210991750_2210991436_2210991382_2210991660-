@@ -258,31 +258,37 @@ const FamilyDashboard = () => {
   const isOwner = selectedFamily && currentUserId && selectedFamily.owner === currentUserId;
 
   return (
-    <div className="min-h-screen bg-mesh py-8">
+    <div className="min-h-screen py-8" style={{ backgroundColor: '#F4F0D8' }}>
+      <style>{`
+        body { background-color: #F4F0D8; }
+        .serif-title { font-family: Georgia, 'Times New Roman', serif; }
+        .serif-italic { font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
+      `}</style>
       <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
         {/* Header Section */}
-        <div className="glass-card p-8 mb-8 fade-in-up">
+        <div className="p-8 mb-12 rounded-2xl" style={{ backgroundColor: '#FFFFFF' }}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center space-x-4">
-              <div className="p-4 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl shadow-lg">
-                <Shield className="w-8 h-8 text-white" />
+              <div className="p-3 rounded-2xl" style={{ backgroundColor: '#F8F3CE' }}>
+                <Shield className="w-6 h-6" style={{ color: '#2A2925' }} />
               </div>
               <div>
-                <h1 className="text-3xl font-display font-bold text-slate-900">Household Hub</h1>
-                <p className="text-slate-600 mt-1">Manage shared finances</p>
+                <h1 className="serif-title text-3xl md:text-4xl font-bold" style={{ color: '#2A2925' }}>Household Hub</h1>
+                <p className="mt-1" style={{ color: '#7A7A73' }}>Manage shared finances</p>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row items-end gap-6 w-full md:w-auto">
               <div className="w-full md:w-auto min-w-[200px]">
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-bold mb-2 uppercase tracking-wide" style={{ color: '#7A7A73' }}>
                   Household
                 </label>
                 <div className="relative">
                   <select
                     onChange={(e) => setSelectedFamily(families.find(f => f._id === e.target.value))}
                     value={selectedFamily?._id || ""}
-                    className="input-primary appearance-none cursor-pointer pr-10 text-sm font-semibold py-2.5"
+                    className="appearance-none cursor-pointer pr-10 text-sm font-semibold py-2.5 px-4 rounded-lg w-full"
+                    style={{ backgroundColor: '#F4F0D8', color: '#2A2925', border: '1px solid #E0D5C8' }}
                   >
                     <option value="">Select Household</option>
                     {families.map(family => (
@@ -290,7 +296,7 @@ const FamilyDashboard = () => {
                     ))}
                   </select>
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <Users className="h-4 w-4 text-slate-400" />
+                    <Users className="h-4 w-4" style={{ color: '#7A7A73' }} />
                   </div>
                 </div>
               </div>
@@ -298,12 +304,10 @@ const FamilyDashboard = () => {
               {isOwner && (
                 <button
                   onClick={deleteFamily}
-                  className="w-full md:w-auto px-4 py-2.5 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-all border border-red-200 shadow-sm hover:shadow-md active:scale-95"
-                  title="Delete Household"
+                  className="w-full md:w-auto px-4 py-2.5 rounded-lg transition-all hover:shadow-md active:scale-95 font-bold text-sm whitespace-nowrap"
+                  style={{ backgroundColor: '#FFFFFF', color: '#B8745C', border: '1px solid #E0D5C8' }}
                 >
-                  <span className="text-xs font-bold whitespace-nowrap">
-                    Delete Household
-                  </span>
+                  Delete Household
                 </button>
               )}
             </div>
@@ -313,24 +317,24 @@ const FamilyDashboard = () => {
         {selectedFamily ? (
           <div className="grid lg:grid-cols-12 gap-8">
             {/* Left Column: Members & Invite */}
-            <div className="lg:col-span-4 space-y-8 fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <div className="lg:col-span-4 space-y-8">
               {/* Invite Card */}
-              <div className="glass-card p-6">
-                <div className="flex items-center space-x-2 mb-4">
-                  <h3 className="text-lg font-bold text-slate-900">Invite Member</h3>
-                </div>
+              <div className="p-6 rounded-2xl" style={{ backgroundColor: '#FFFFFF' }}>
+                <h3 className="text-lg font-bold mb-4" style={{ color: '#2A2925' }}>Invite Member</h3>
                 <div className="flex gap-2">
                   <input
                     type="email"
                     value={inviteEmail}
                     onChange={(e) => setInviteEmail(e.target.value)}
-                    className="input-primary flex-1"
+                    className="flex-1 px-4 py-3 rounded-lg"
                     placeholder="Email address"
+                    style={{ backgroundColor: '#F4F0D8', color: '#2A2925', border: '1px solid #E0D5C8' }}
                   />
                   <button
                     onClick={handleInviteMember}
                     disabled={inviteLoading}
-                    className="p-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-500/25 disabled:opacity-50"
+                    className="p-3 rounded-lg text-white transition-colors disabled:opacity-50"
+                    style={{ backgroundColor: '#2A2925' }}
                   >
                     {inviteLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Send className="h-5 w-5" />}
                   </button>
@@ -338,65 +342,67 @@ const FamilyDashboard = () => {
               </div>
 
               {/* Members List */}
-              <div className="glass-card p-6">
-                <div className="flex items-center space-x-2 mb-4">
-                  <h3 className="text-lg font-bold text-slate-900">Members</h3>
-                </div>
+              <div className="p-6 rounded-2xl" style={{ backgroundColor: '#FFFFFF' }}>
+                <h3 className="text-lg font-bold mb-4" style={{ color: '#2A2925' }}>Members</h3>
                 <div className="space-y-3">
-                  {familyMembers.map((member, index) => (
-                    <div
-                      key={member?.user?._id}
-                      className="flex items-center justify-between p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md bg-gradient-to-br ${index % 2 === 0 ? 'from-blue-500 to-blue-600' : 'from-purple-500 to-purple-600'
-                          }`}>
-                          {member?.user?.name.charAt(0)}
+                  {familyMembers.map((member, index) => {
+                    const colors = ['#2C3E50', '#A0654D', '#7B9BA1', '#8B7355'];
+                    const bgColor = colors[index % colors.length];
+                    return (
+                      <div
+                        key={member?.user?._id}
+                        className="flex items-center justify-between p-3 rounded-xl transition-colors"
+                        style={{ backgroundColor: '#F4F0D8' }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{ backgroundColor: bgColor }}>
+                            {member?.user?.name.charAt(0)}
+                          </div>
+                          <div>
+                            <p className="font-semibold" style={{ color: '#2A2925' }}>{member?.user?.name}</p>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium capitalize" style={{ backgroundColor: '#E8F3EA', color: '#6B8E5A' }}>
+                              {member?.role}
+                            </span>
+                          </div>
                         </div>
-                        <div>
-                          <p className="font-semibold text-slate-900">{member?.user?.name}</p>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-50 text-primary-700 capitalize">
-                            {member?.role}
-                          </span>
-                        </div>
-                      </div>
 
-                      {isOwner && member?.user?._id !== currentUserId && (
-                        <button
-                          onClick={() => handleRemoveMember(member?.user?._id)}
-                          className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
-                          title="Remove Member"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      )}
-                    </div>
-                  ))}
+                        {isOwner && member?.user?._id !== currentUserId && (
+                          <button
+                            onClick={() => handleRemoveMember(member?.user?._id)}
+                            className="p-2 rounded-lg transition-all"
+                            style={{ color: '#B8745C' }}
+                            title="Remove Member"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
               {/* Pending Invitations */}
               {familyMembers.some(m => m.user._id === currentUserId && (m.role === 'owner' || m.role === 'admin')) && selectedFamily.invitations?.length > 0 && (
-                <div className="glass-card p-6 mt-6">
-                  <div className="flex items-center space-x-2 mb-4">
-                    <h3 className="text-lg font-bold text-slate-900 text-amber-800">Pending Invites</h3>
-                  </div>
+                <div className="p-6 rounded-2xl mt-6" style={{ backgroundColor: '#FFFFFF' }}>
+                  <h3 className="text-lg font-bold mb-4" style={{ color: '#9B7D6B' }}>Pending Invites</h3>
                   <div className="space-y-3">
                     {selectedFamily.invitations.filter(i => i.status === 'pending').map((invite, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-between p-3 bg-white border border-amber-100 rounded-xl shadow-sm"
+                        className="flex items-center justify-between p-3 rounded-xl"
+                        style={{ backgroundColor: '#F8F3CE', border: '1px solid #E8DCC4' }}
                       >
                         <div className="flex items-center gap-3 overflow-hidden">
-                          <div className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-600 font-bold text-xs shrink-0">
+                          <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0" style={{ backgroundColor: '#F4F0D8', color: '#9B7D6B' }}>
                             {invite.email.charAt(0).toUpperCase()}
                           </div>
                           <div className="min-w-0">
-                            <p className="font-medium text-slate-900 truncate text-sm">{invite.email}</p>
-                            <p className="text-xs text-slate-400">Expires {new Date(invite.expiresAt).toLocaleDateString()}</p>
+                            <p className="font-medium text-sm truncate" style={{ color: '#2A2925' }}>{invite.email}</p>
+                            <p className="text-xs" style={{ color: '#7A7A73' }}>Expires {new Date(invite.expiresAt).toLocaleDateString()}</p>
                           </div>
                         </div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-100">
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full" style={{ color: '#9B7D6B', backgroundColor: '#F4F0D8', border: '1px solid #E8DCC4' }}>
                           Pending
                         </span>
                       </div>
@@ -407,31 +413,41 @@ const FamilyDashboard = () => {
             </div>
 
             {/* Right Column: Tabs Content */}
-            <div className="lg:col-span-8 fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="lg:col-span-8">
 
               {/* Tabs Switcher */}
-              <div className="bg-white/50 backdrop-blur-sm p-1.5 rounded-2xl flex max-w-md mb-6 border border-white/20 shadow-sm">
+              <div className="flex gap-2 mb-8 max-w-md">
                 <button
                   onClick={() => setActiveTab('expenses')}
-                  className={`flex-1 flex items-center justify-center space-x-2 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${activeTab === 'expenses' ? 'bg-white text-primary-700 shadow-md' : 'text-slate-500 hover:text-slate-700'}`}
+                  className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-xl text-sm font-bold transition-all ${activeTab === 'expenses' ? 'text-white' : ''}`}
+                  style={{
+                    backgroundColor: activeTab === 'expenses' ? '#2A2925' : '#FFFFFF',
+                    color: activeTab === 'expenses' ? '#FFFFFF' : '#57564F',
+                    border: activeTab === 'expenses' ? 'none' : '1px solid #E0D5C8'
+                  }}
                 >
                   <DollarSign className="w-4 h-4" />
                   <span>Shared Expenses</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('goals')}
-                  className={`flex-1 flex items-center justify-center space-x-2 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${activeTab === 'goals' ? 'bg-white text-primary-700 shadow-md' : 'text-slate-500 hover:text-slate-700'}`}
+                  className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-xl text-sm font-bold transition-all`}
+                  style={{
+                    backgroundColor: activeTab === 'goals' ? '#2A2925' : '#FFFFFF',
+                    color: activeTab === 'goals' ? '#FFFFFF' : '#57564F',
+                    border: activeTab === 'goals' ? 'none' : '1px solid #E0D5C8'
+                  }}
                 >
                   <Target className="w-4 h-4" />
                   <span>Joint Goals</span>
                 </button>
               </div>
 
-              <div className="glass-card p-8 min-h-[500px]">
+              <div className="p-8 rounded-2xl min-h-[500px]" style={{ backgroundColor: '#FFFFFF' }}>
                 {/* HEADERS & ACTIONS */}
                 <div className="flex justify-between items-center mb-8">
                   <div className="flex items-center space-x-3">
-                    <h3 className="text-2xl font-bold text-slate-900">
+                    <h3 className="text-2xl font-serif font-bold" style={{ color: '#2A2925' }}>
                       {activeTab === 'expenses' ? 'Shared Expenses' : 'Financial Goals'}
                     </h3>
                   </div>
@@ -439,14 +455,19 @@ const FamilyDashboard = () => {
                   {activeTab === 'expenses' ? (
                     <button
                       onClick={() => setShowExpenseForm(!showExpenseForm)}
-                      className={`btn-primary flex items-center gap-2 ${showExpenseForm ? 'bg-red-500 hover:bg-red-600' : ''}`}
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all"
+                      style={{
+                        backgroundColor: showExpenseForm ? '#B8745C' : '#2A2925',
+                        color: '#FFFFFF'
+                      }}
                     >
                       {showExpenseForm ? "Cancel" : <><PlusCircle className="w-5 h-5" /> Add Expense</>}
                     </button>
                   ) : (
                     <button
                       onClick={() => setShowGoalForm(true)}
-                      className="btn-primary flex items-center gap-2"
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg font-bold text-white"
+                      style={{ backgroundColor: '#2A2925' }}
                     >
                       <PlusCircle className="w-5 h-5" /> New Goal
                     </button>
@@ -533,17 +554,18 @@ const FamilyDashboard = () => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-20 text-center glass-card opacity-50">
-            <div className="bg-primary-50 p-6 rounded-full mb-6">
-              <Users className="w-16 h-16 text-primary-400" />
+          <div className="flex flex-col items-center justify-center py-20 text-center p-8 rounded-2xl" style={{ backgroundColor: '#FFFFFF' }}>
+            <div className="p-6 rounded-full mb-6" style={{ backgroundColor: '#F8F3CE' }}>
+              <Users className="w-16 h-16" style={{ color: '#9B7D6B' }} />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 mb-2">Select a Household</h2>
-            <p className="text-slate-500 max-w-md mb-8">
+            <h2 className="text-2xl font-bold mb-2" style={{ color: '#2A2925' }}>Select a Household</h2>
+            <p className="max-w-md mb-8" style={{ color: '#7A7A73' }}>
               Choose a family from the list above or create a new one to start managing your household.
             </p>
             <Link
               to="/family/create"
-              className="btn-primary flex items-center gap-2"
+              className="flex items-center gap-2 px-6 py-2 rounded-lg font-bold text-white"
+              style={{ backgroundColor: '#2A2925' }}
             >
               <PlusCircle className="w-5 h-5" />
               Create New Household
@@ -557,12 +579,12 @@ const FamilyDashboard = () => {
 
 // Helper Component for Empty State
 const EmptyState = ({ icon: Icon, title, subtitle }) => (
-  <div className="text-center py-12 bg-slate-50 rounded-2xl border border-slate-100 border-dashed w-full">
-    <div className="bg-slate-100 p-4 rounded-full inline-flex mb-4">
-      <Icon className="w-8 h-8 text-slate-400" />
+  <div className="text-center py-12 rounded-2xl border-2 border-dashed w-full" style={{ backgroundColor: '#F4F0D8', borderColor: '#E0D5C8' }}>
+    <div className="p-4 rounded-full inline-flex mb-4" style={{ backgroundColor: '#FFFFFF' }}>
+      <Icon className="w-8 h-8" style={{ color: '#9B7D6B' }} />
     </div>
-    <p className="text-lg font-medium text-slate-900">{title}</p>
-    <p className="text-slate-500">{subtitle}</p>
+    <p className="text-lg font-medium" style={{ color: '#2A2925' }}>{title}</p>
+    <p style={{ color: '#7A7A73' }}>{subtitle}</p>
   </div>
 );
 
@@ -570,32 +592,32 @@ const ExpenseCard = ({ expense, currentUserId, isFamilyOwner, onDelete }) => {
   const canDelete = isFamilyOwner || (expense.paidBy?._id === currentUserId) || (expense.paidBy === currentUserId);
 
   return (
-    <div className="bg-white border border-slate-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group relative">
+    <div className="p-6 rounded-xl hover:shadow-lg transition-all duration-300 group relative" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E0D5C8' }}>
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-start space-x-4">
-          <div className="p-3 bg-primary-50 rounded-xl group-hover:bg-primary-100 transition-colors">
-            <CreditCard className="h-6 w-6 text-primary-600" />
+          <div className="p-3 rounded-xl transition-colors" style={{ backgroundColor: '#F8F3CE' }}>
+            <CreditCard className="h-6 w-6" style={{ color: '#2A2925' }} />
           </div>
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200 uppercase tracking-wide">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wide" style={{ backgroundColor: '#F4F0D8', color: '#57564F', border: '1px solid #E0D5C8' }}>
                 {expense.category}
               </span>
-              <span className="text-xs text-slate-400">•</span>
-              <span className="text-xs text-slate-500">
+              <span className="text-xs" style={{ color: '#7A7A73' }}>•</span>
+              <span className="text-xs" style={{ color: '#7A7A73' }}>
                 {new Date(expense.date || Date.now()).toLocaleDateString()}
               </span>
             </div>
-            <h3 className="font-bold text-lg text-slate-900">
+            <h3 className="font-bold text-lg" style={{ color: '#2A2925' }}>
               {expense.description}
             </h3>
           </div>
         </div>
         <div className="text-right">
-          <span className="text-xl font-bold text-slate-900 block">
+          <span className="text-xl font-bold block" style={{ color: '#2A2925' }}>
             ${expense.amount.toFixed(2)}
           </span>
-          <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded mt-1 inline-block">
+          <span className="text-xs font-medium px-2 py-1 rounded mt-1 inline-block" style={{ backgroundColor: '#F4F0D8', color: '#57564F' }}>
             {expense.splitType === 'equal' ? 'Split Equally' : 'Custom Split'}
           </span>
         </div>
@@ -604,15 +626,16 @@ const ExpenseCard = ({ expense, currentUserId, isFamilyOwner, onDelete }) => {
       {canDelete && (
         <button
           onClick={(e) => { e.stopPropagation(); onDelete(); }}
-          className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all border border-transparent hover:border-red-100"
+          className="p-2 rounded-full transition-all"
+          style={{ color: '#B8745C' }}
           title="Delete Expense"
         >
           <Trash2 className="w-5 h-5" />
         </button>
       )}
 
-      <div className="pt-4 border-t border-slate-100">
-        <div className="flex items-center gap-2 text-slate-500 text-sm font-medium mb-3">
+      <div className="pt-4" style={{ borderTop: '1px solid #E0D5C8' }}>
+        <div className="flex items-center gap-2 text-sm font-medium mb-3" style={{ color: '#57564F' }}>
           <PieChart className="w-4 h-4" />
           <span>Split Details</span>
         </div>
@@ -620,24 +643,22 @@ const ExpenseCard = ({ expense, currentUserId, isFamilyOwner, onDelete }) => {
           {expense.splits?.map((split) => (
             <div
               key={split._id}
-              className="flex justify-between items-center text-sm p-2 rounded-lg hover:bg-slate-50 transition-colors"
+              className="flex justify-between items-center text-sm p-2 rounded-lg transition-colors"
+              style={{ backgroundColor: '#F4F0D8' }}
             >
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">
+                <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: '#E8DCC4', color: '#9B7D6B' }}>
                   {split.user?.name?.charAt(0)}
                 </div>
-                <span className="text-slate-700 font-medium">{split.user?.name}</span>
+                <span className="font-medium" style={{ color: '#2A2925' }}>{split.user?.name}</span>
               </div>
               <span
-                className={`
-                px-2 py-1 rounded text-xs font-bold border
-                ${split.status === "pending"
-                    ? "bg-yellow-50 text-yellow-700 border-yellow-200"
-                    : split.status === "paid"
-                      ? "bg-green-50 text-green-700 border-green-200"
-                      : "bg-red-50 text-red-700 border-red-200"
-                  }
-              `}
+                className="px-2 py-1 rounded text-xs font-bold"
+                style={{
+                  backgroundColor: split.status === "pending" ? '#F8F3CE' : split.status === "paid" ? '#E8F3EA' : '#FFE8E8',
+                  color: split.status === "pending" ? '#9B7D6B' : split.status === "paid" ? '#6B8E5A' : '#B8745C',
+                  border: `1px solid ${split.status === "pending" ? '#E8DCC4' : split.status === "paid" ? '#D4E8D8' : '#F0D4D4'}`
+                }}
               >
                 ${Number(split.amount).toFixed(2)} • {split.status.toUpperCase()}
               </span>
@@ -687,16 +708,16 @@ const ExpenseForm = ({ familyId, onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-slate-50 rounded-xl p-6 border border-slate-200 shadow-inner">
-      <h4 className="text-lg font-bold text-slate-900 mb-4">Add New Shared Expense</h4>
+    <form onSubmit={handleSubmit} className="p-6 rounded-xl border-2 border-dashed" style={{ backgroundColor: '#F4F0D8', borderColor: '#E0D5C8' }}>
+      <h4 className="text-lg font-bold mb-4" style={{ color: '#2A2925' }}>Add New Shared Expense</h4>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-2">
+          <label className="block text-sm font-semibold mb-2" style={{ color: '#57564F' }}>
             Amount
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <DollarSign className="h-4 w-4 text-slate-400" />
+              <DollarSign className="h-4 w-4" style={{ color: '#7A7A73' }} />
             </div>
             <input
               type="number"
@@ -704,17 +725,18 @@ const ExpenseForm = ({ familyId, onSuccess }) => {
               onChange={(e) =>
                 setFormData({ ...formData, amount: e.target.value })
               }
-              className="input-primary pl-10"
+              className="w-full pl-10 px-4 py-2 rounded-lg"
               placeholder="0.00"
               required
               min="0"
               step="0.01"
+              style={{ backgroundColor: '#FFFFFF', color: '#2A2925', border: '1px solid #E0D5C8' }}
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-2">
+          <label className="block text-sm font-semibold mb-2" style={{ color: '#57564F' }}>
             Category
           </label>
           <select
@@ -722,8 +744,9 @@ const ExpenseForm = ({ familyId, onSuccess }) => {
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
-            className="input-primary"
+            className="w-full px-4 py-2 rounded-lg"
             required
+            style={{ backgroundColor: '#FFFFFF', color: '#2A2925', border: '1px solid #E0D5C8' }}
           >
             <option value="">Select Category</option>
             <option value="groceries">Groceries</option>
@@ -735,7 +758,7 @@ const ExpenseForm = ({ familyId, onSuccess }) => {
         </div>
 
         <div className="md:col-span-2">
-          <label className="block text-sm font-semibold text-slate-700 mb-2">
+          <label className="block text-sm font-semibold mb-2" style={{ color: '#57564F' }}>
             Description
           </label>
           <input
@@ -744,14 +767,15 @@ const ExpenseForm = ({ familyId, onSuccess }) => {
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
-            className="input-primary"
+            className="w-full px-4 py-2 rounded-lg"
             placeholder="What was this expense for?"
             required
+            style={{ backgroundColor: '#FFFFFF', color: '#2A2925', border: '1px solid #E0D5C8' }}
           />
         </div>
 
         <div className="md:col-span-2">
-          <label className="block text-sm font-semibold text-slate-700 mb-2">
+          <label className="block text-sm font-semibold mb-2" style={{ color: '#57564F' }}>
             Split Type
           </label>
           <div className="relative">
@@ -760,15 +784,16 @@ const ExpenseForm = ({ familyId, onSuccess }) => {
               onChange={(e) =>
                 setFormData({ ...formData, splitType: e.target.value })
               }
-              className="input-primary appearance-none"
+              className="w-full px-4 py-2 rounded-lg appearance-none pr-10"
               required
+              style={{ backgroundColor: '#FFFFFF', color: '#2A2925', border: '1px solid #E0D5C8' }}
             >
               <option value="equal">Split Equally</option>
               <option value="percentage">Split by Percentage</option>
               <option value="custom">Custom Split</option>
             </select>
             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-              <PieChart className="h-4 w-4 text-slate-400" />
+              <PieChart className="h-4 w-4" style={{ color: '#7A7A73' }} />
             </div>
           </div>
         </div>
@@ -777,7 +802,8 @@ const ExpenseForm = ({ familyId, onSuccess }) => {
       <button
         type="submit"
         disabled={submitting}
-        className="mt-6 btn-success w-full flex items-center justify-center space-x-2"
+        className="mt-6 w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-lg font-bold text-white"
+        style={{ backgroundColor: '#6B8E5A' }}
       >
         {submitting ? (
           <>

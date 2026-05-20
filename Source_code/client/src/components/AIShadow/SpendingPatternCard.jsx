@@ -26,16 +26,16 @@ function Sparkline({ amounts, color }) {
 
 export default function SpendingPatternCard({ patterns }) {
   if (!patterns?.length) {
-    return <div style={{ color: '#94a3b8', textAlign: 'center', padding: '1.5rem', fontSize: 13 }}>Not enough data to analyse patterns yet.</div>;
+    return <div style={{ color: '#7A7A73', textAlign: 'center', padding: '1.5rem', fontSize: 13 }}>Not enough data to analyse patterns yet.</div>;
   }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       {patterns.slice(0, 5).map((p, idx) => {
         const pct = p.avgMonthly > 0 ? Math.round((p.volatility / p.avgMonthly) * 100) : 0;
-        const color = pct > 40 ? '#dc2626' : pct > 20 ? '#d97706' : '#059669';
-        const bg = pct > 40 ? '#fff5f5' : pct > 20 ? '#fffbeb' : '#f0fdf4';
-        const border = pct > 40 ? '#fecaca' : pct > 20 ? '#fde68a' : '#bbf7d0';
+        const color = pct > 40 ? '#B8745C' : pct > 20 ? '#C9A24A' : '#6B8E5A';
+        const bg = pct > 40 ? '#F4F0D8' : pct > 20 ? '#F8F3CE' : '#F8F3CE';
+        const border = pct > 40 ? '#E0D5C8' : pct > 20 ? '#E0D5C8' : '#E0D5C8';
         const TrendIcon = pct > 40 ? TrendingUp : pct > 20 ? Minus : TrendingDown;
 
         return (
@@ -45,16 +45,16 @@ export default function SpendingPatternCard({ patterns }) {
             display: 'flex', alignItems: 'center', gap: 10,
             transition: 'all 0.2s',
           }}
-            onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 4px 14px ${border}`; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-            onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
           >
             {/* Rank */}
             <div style={{
               width: 26, height: 26, borderRadius: '50%',
-              background: '#fff', border: `1px solid ${border}`,
-              color: '#64748b', fontSize: 11, fontWeight: 800,
+              background: '#FFFFFF', border: `1px solid ${border}`,
+              color: '#7A7A73', fontSize: 11, fontWeight: 800,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              flexShrink: 0, fontFamily: 'Outfit, sans-serif',
+              flexShrink: 0, fontFamily: 'Georgia, serif',
             }}>
               {idx + 1}
             </div>
@@ -63,7 +63,7 @@ export default function SpendingPatternCard({ patterns }) {
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <p style={{
-                  color: '#0f172a', fontWeight: 600, fontSize: 13, margin: 0,
+                  color: '#2A2925', fontWeight: 600, fontSize: 13, margin: 0,
                   overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                   fontFamily: 'Inter, sans-serif',
                 }}>
@@ -71,7 +71,7 @@ export default function SpendingPatternCard({ patterns }) {
                 </p>
                 {p.isRecurring && (
                   <span style={{
-                    background: '#dbeafe', color: '#1d4ed8',
+                    background: '#F8F3CE', color: '#2A2925',
                     fontSize: 9, fontWeight: 700, padding: '2px 6px',
                     borderRadius: 20, flexShrink: 0, letterSpacing: '0.4px',
                   }}>
@@ -79,7 +79,7 @@ export default function SpendingPatternCard({ patterns }) {
                   </span>
                 )}
               </div>
-              <p style={{ color: '#94a3b8', fontSize: 11, margin: '2px 0 0' }}>
+              <p style={{ color: '#7A7A73', fontSize: 11, margin: '2px 0 0' }}>
                 avg ${p.avgMonthly.toFixed(0)}/mo
               </p>
             </div>
@@ -89,11 +89,11 @@ export default function SpendingPatternCard({ patterns }) {
 
             {/* Volatility */}
             <div style={{ textAlign: 'right', flexShrink: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 3, color, fontSize: 13, fontWeight: 700, justifyContent: 'flex-end', fontFamily: 'Outfit, sans-serif' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 3, color, fontSize: 13, fontWeight: 700, justifyContent: 'flex-end', fontFamily: 'Georgia, serif' }}>
                 <TrendIcon size={12} />
                 {pct}%
               </div>
-              <p style={{ color: '#cbd5e1', fontSize: 10, margin: 0 }}>volatility</p>
+              <p style={{ color: '#7A7A73', fontSize: 10, margin: 0 }}>volatility</p>
             </div>
           </div>
         );
