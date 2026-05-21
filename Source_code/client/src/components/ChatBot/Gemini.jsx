@@ -80,7 +80,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[60] font-sans">
+    <div className="fixed bottom-6 rounded-full right-6 z-[60] font-sans">
       {/* Floating Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
